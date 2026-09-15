@@ -367,35 +367,35 @@
 
   const FNS = {
     map: {
-      code: '<span class="c">// map：提取每个学生的姓名</span>\n<span class="k">const</span> out = d3.<span class="k">map</span>(data, d => d.name);\n<span class="c">// → ["张明","李华","王芳",...]</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">map</span>(data, d => d.name);',
       run: (d) => d3.map(d, x => x.name),
     },
     filter: {
-      code: '<span class="c">// filter：筛选男生</span>\n<span class="k">const</span> out = d3.<span class="k">filter</span>(data, d => d.gender === <span class="s">"男"</span>);\n<span class="c">// → 4 条记录</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">filter</span>(data, d => d.gender === <span class="s">"男"</span>);',
       run: (d) => d3.filter(d, x => x.gender === "男"),
     },
     sort: {
-      code: '<span class="c">// sort：按年龄升序</span>\n<span class="k">const</span> out = d3.<span class="k">sort</span>(data.slice(), (a,b) => a.age - b.age);\n<span class="c">// → 17 岁在前</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">sort</span>(data, (a,b) => a.age - b.age);',
       run: (d) => d3.sort([...d], (a,b) => a.age - b.age),
     },
     reduce: {
-      code: '<span class="c">// reduce：计算总年龄</span>\n<span class="k">const</span> out = d3.<span class="k">reduce</span>(data, (s,d) => s + d.age, 0);\n<span class="c">// → 一个数字</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">reduce</span>(data, (s,d) => s + d.age, <span class="n">0</span>);',
       run: (d) => d3.reduce(d, (s,x) => s + x.age, 0),
     },
     group: {
-      code: '<span class="c">// group：按班级分组（保留所有元素）</span>\n<span class="k">const</span> out = d3.<span class="k">group</span>(data, d => d.class);\n<span class="c">// → Map { "软件1班" => [...], "软件2班" => [...] }</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">group</span>(data, d => d.class);',
       run: (d) => Array.from(d3.group(d, x => x.class)),
     },
     rollup: {
-      code: '<span class="c">// rollup：按班级统计人数</span>\n<span class="k">const</span> out = d3.<span class="k">rollup</span>(data, v => v.length, d => d.class);\n<span class="c">// → Map { "软件1班" => 5, "软件2班" => 3 }</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">rollup</span>(data, v => v.length, d => d.class);',
       run: (d) => Array.from(d3.rollup(d, v => v.length, x => x.class)),
     },
     cross: {
-      code: '<span class="c">// cross：性别 × 班级 笛卡尔积</span>\n<span class="k">const</span> genders = [<span class="s">"男"</span>,<span class="s">"女"</span>];\n<span class="k">const</span> classes = [<span class="s">"软件1班"</span>,<span class="s">"软件2班"</span>];\n<span class="k">const</span> out = d3.<span class="k">cross</span>(genders, classes);\n<span class="c">// → 4 个组合</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">cross</span>([<span class="s">"男"</span>,<span class="s">"女"</span>], [<span class="s">"软件1班"</span>,<span class="s">"软件2班"</span>]);',
       run: () => d3.cross(["男","女"], ["软件1班","软件2班"]),
     },
     bin: {
-      code: '<span class="c">// bin：年龄分箱</span>\n<span class="k">const</span> ages = data.map(d => d.age);\n<span class="k">const</span> out = d3.<span class="k">bin</span>().thresholds([17,18])(ages);\n<span class="c">// → 分箱结果</span>',
+      code: '<span class="k">const</span> out = d3.<span class="k">bin</span>().thresholds([<span class="n">17</span>,<span class="n">18</span>])(data.map(d => d.age));',
       run: (d) => d3.bin().thresholds([17,18])(d.map(x => x.age)).map(b => ({x0:b.x0, x1:b.x1, n:b.length})),
     },
   };
@@ -417,11 +417,83 @@
     return JSON.stringify(v);
   }
 
+  // 渲染输入为紧凑表格
+  function renderInput() {
+    const rows = SAMPLE.map(d =>
+      `<tr><td>${d.id}</td><td>${d.name}</td><td>${d.gender}</td><td>${d.age}</td><td>${d.class}</td></tr>`
+    ).join("");
+    return `<table class="tf-table"><thead><tr><th>id</th><th>name</th><th>gender</th><th>age</th><th>class</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  // 按函数类型渲染不同的可视化输出
+  function renderOutput(name, out) {
+    switch (name) {
+      case "map":
+        // 提取姓名 → 标签卡片
+        return `<div class="tf-chips">${out.map(n => `<span class="tf-chip">${n}</span>`).join("")}</div>`;
+
+      case "filter":
+        // 筛选男生 → 表格，行高亮
+        return `<table class="tf-table"><thead><tr><th>id</th><th>name</th><th>gender</th><th>age</th><th>class</th></tr></thead><tbody>${
+          out.map(d => `<tr class="tf-row-highlight"><td>${d.id}</td><td>${d.name}</td><td>${d.gender}</td><td>${d.age}</td><td>${d.class}</td></tr>`).join("")
+        }</tbody></table><div class="tf-note">共 ${out.length} 条记录</div>`;
+
+      case "sort":
+        // 按年龄排序 → 表格 + 排序箭头
+        return `<table class="tf-table"><thead><tr><th>id</th><th>name</th><th>gender</th><th>age ↑</th><th>class</th></tr></thead><tbody>${
+          out.map(d => `<tr><td>${d.id}</td><td>${d.name}</td><td>${d.gender}</td><td><b>${d.age}</b></td><td>${d.class}</td></tr>`).join("")
+        }</tbody></table>`;
+
+      case "reduce":
+        // 总年龄 → 大数字卡片
+        return `<div class="tf-bignum"><span class="tf-num">${out}</span><span class="tf-unit">岁</span><div class="tf-bignum-label">8 名学生总年龄</div></div>`;
+
+      case "group":
+        // 按班级分组 → 分组卡片
+        return `<div class="tf-groups">${out.map(([cls, items]) =>
+          `<div class="tf-group-card"><div class="tf-group-title">${cls} <span>(${items.length})</span></div><div class="tf-chips">${items.map(d => `<span class="tf-chip tf-chip-sm">${d.name}</span>`).join("")}</div></div>`
+        ).join("")}</div>`;
+
+      case "rollup":
+        // 班级人数 → 水平柱状图
+        {
+          const max = Math.max(...out.map(d => d[1]));
+          return `<div class="tf-bars">${out.map(([cls, n]) =>
+            `<div class="tf-bar-row"><span class="tf-bar-label">${cls}</span><div class="tf-bar-track"><div class="tf-bar-fill" style="width:${n/max*100}%"></div><span class="tf-bar-val">${n}</span></div></div>`
+          ).join("")}</div>`;
+        }
+
+      case "cross":
+        // 笛卡尔积 → 矩阵表格
+        return `<table class="tf-table tf-matrix"><thead><tr><th></th><th>男</th><th>女</th></tr></thead><tbody>${
+          ["软件1班","软件2班"].map(cls =>
+            `<tr><td><b>${cls}</b></td>${["男","女"].map(g => {
+              const hit = out.some(c => c[0]===g && c[1]===cls);
+              return `<td class="${hit?"tf-cell-on":""}">${hit?"✓":""}</td>`;
+            }).join("")}</tr>`
+          ).join("")
+        }</tbody></table>`;
+
+      case "bin":
+        // 年龄分箱 → 直方图
+        {
+          const max = Math.max(...out.map(b => b.n));
+          return `<div class="tf-hist">${out.map(b => {
+            const label = b.x0 === undefined ? `< ${b.x1}` : b.x1 === undefined ? `≥ ${b.x0}` : `${b.x0}-${b.x1-1}`;
+            return `<div class="tf-hist-col"><div class="tf-hist-bar" style="height:${b.n/max*100}%"></div><span class="tf-hist-val">${b.n}</span><span class="tf-hist-label">${label}岁</span></div>`;
+          }).join("")}</div>`;
+        }
+
+      default:
+        return `<pre style="margin:0;white-space:pre-wrap;color:#e8e2d0">${fmt(out)}</pre>`;
+    }
+  }
+
   function runTransform(name) {
     const fn = FNS[name];
-    document.getElementById("ioInput").textContent = JSON.stringify(SAMPLE, null, 0).slice(0, 600) + (JSON.stringify(SAMPLE).length > 600 ? "..." : "");
+    document.getElementById("ioInput").innerHTML = renderInput();
     const out = fn.run(SAMPLE);
-    document.getElementById("ioOutput").innerHTML = "<pre style=\"margin:0;white-space:pre-wrap\">" + fmt(out) + "</pre>";
+    document.getElementById("ioOutput").innerHTML = renderOutput(name, out);
     document.getElementById("transformCode").innerHTML = fn.code;
   }
 
@@ -443,47 +515,77 @@
   let nextId = 6;
   let useKey = true;
 
-  const joinSvgW = 680, joinSvgH = 200;
+  const joinSvgW = 720, joinSvgH = 240;
   const joinSvg = d3.select("#joinViz").append("svg").attr("viewBox", `0 0 ${joinSvgW} ${joinSvgH}`);
   const jg = joinSvg.append("g");
 
+  // 圆形半径根据数值 v 映射：v ∈ [20,90] → r ∈ [22,42]
+  const rScale = d3.scaleSqrt().domain([20, 90]).range([22, 42]);
+  const itemSpacing = 120;
+
   function renderJoin(prevData) {
     const sel = jg.selectAll("g.item").data(joinData, useKey ? d => d.id : null);
-    // 在 append/remove 前先计算三态数量
     const enterC = sel.enter().size();
     const exitC = sel.exit().size();
     const updateC = Math.max(0, joinData.length - enterC);
-    const t = d3.transition().duration(500);
+    const t = d3.transition().duration(600).ease(d3.easeCubicOut);
 
-    // enter：新增元素（绿色，从缩小淡入）
+    // enter：从上方掉落 + 淡入
     const enterG = sel.enter().append("g").attr("class","item")
-      .attr("transform", (d,i) => `translate(${i*120+20}, 100) scale(0.3)`)
+      .attr("transform", (d,i) => `translate(${i*itemSpacing+70}, -60)`)
       .style("opacity", 0);
-    enterG.append("circle").attr("r", 32).attr("fill", C.ok);
-    enterG.append("text").attr("text-anchor","middle").attr("dy",5)
-      .style("fill","#fffdf8").style("font-size","18px").style("font-weight","600").text(d=>"#"+d.id);
+    enterG.append("circle")
+      .attr("r", d => rScale(d.v))
+      .attr("fill", C.ok)
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 2);
+    enterG.append("text").attr("text-anchor","middle").attr("dy",-3)
+      .style("fill","#fffdf8").style("font-size","15px").style("font-weight","700").style("font-family",C.mono)
+      .text(d=>"#"+d.id);
+    enterG.append("text").attr("class","vlabel").attr("text-anchor","middle").attr("dy",14)
+      .style("fill","rgba(255,253,248,0.85)").style("font-size","11px").style("font-family",C.mono)
+      .text(d=>"v="+d.v);
 
-    // update + enter 合并：重新定位，update 用墨绿，enter 保持绿色
+    // update + enter 合并：定位到目标位置
     sel.merge(enterG).transition(t)
-      .attr("transform", (d,i) => `translate(${i*120+20}, 100)`)
+      .attr("transform", (d,i) => `translate(${i*itemSpacing+70}, 120)`)
       .style("opacity", 1);
+
+    // 圆形颜色：update 墨绿，enter 绿色；半径随 v 变化
     sel.merge(enterG).select("circle")
-      .transition(t).attr("fill", (d) => {
-        // prevData 中已存在 → update（墨绿）；否则 → enter（绿色）
-        return (prevData && prevData.some(p => p.id === d.id)) ? C.primary3 : C.ok;
-      });
-    sel.merge(enterG).select("text").text(d=>"#"+d.id);
+      .transition(t)
+      .attr("r", d => rScale(d.v))
+      .attr("fill", (d) => (prevData && prevData.some(p => p.id === d.id)) ? C.primary3 : C.ok);
+    sel.merge(enterG).select(".vlabel").text(d=>"v="+d.v);
 
-    // exit：多余元素（红色淡出后移除）
-    sel.exit().each(function() { d3.select(this).select("circle").attr("fill", C.bad); })
+    // exit：缩小 + 向下淡出
+    sel.exit().each(function() {
+      d3.select(this).select("circle").attr("fill", C.bad).attr("stroke", "#fff");
+    })
       .transition(t).style("opacity", 0)
-      .attr("transform", (d,i) => `translate(${i*120+20}, 100) scale(0.3)`).remove();
+      .attr("transform", (d,i) => `translate(${i*itemSpacing+70}, 200) scale(0.4)`).remove();
 
-    // 计数标注
+    // 计数标注（彩色标签）
     jg.selectAll(".counter").remove();
-    jg.append("text").attr("class","counter").attr("x", 20).attr("y", 30)
-      .style("fill",C.ink3).style("font-size","12px").style("font-family",C.mono)
-      .text(`enter: ${enterC}  ·  update: ${updateC}  ·  exit: ${exitC}  ·  共 ${joinData.length} 个  ·  key: ${useKey?"ON":"OFF"}`);
+    const cg = jg.append("g").attr("class","counter").attr("transform", "translate(20, 28)");
+    const badges = [
+      {label:`enter ${enterC}`, color:C.ok},
+      {label:`update ${updateC}`, color:C.primary3},
+      {label:`exit ${exitC}`, color:C.bad},
+      {label:`共 ${joinData.length}`, color:C.ink2},
+    ];
+    let bx = 0;
+    badges.forEach(b => {
+      cg.append("rect").attr("x", bx).attr("y", -14).attr("width", 70).attr("height", 22)
+        .attr("rx", 11).attr("fill", b.color).attr("opacity", 0.15);
+      cg.append("text").attr("x", bx+35).attr("y", 2).attr("text-anchor","middle")
+        .style("fill", b.color).style("font-size","11px").style("font-family",C.mono).style("font-weight","600")
+        .text(b.label);
+      bx += 78;
+    });
+    cg.append("text").attr("x", bx+10).attr("y", 2)
+      .style("fill",C.ink3).style("font-size","11px").style("font-family",C.mono)
+      .text(`key: ${useKey?"ON":"OFF"}`);
   }
 
   document.getElementById("joinAdd").addEventListener("click", () => {

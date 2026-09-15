@@ -280,10 +280,47 @@ a:hover { color: var(--primary); }
 .io-arrow { display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--accent); }
 .io-box {
   flex: 1; background: #1a1a16; border-radius: 8px; padding: 14px;
-  font-family: var(--mono); font-size: 12px; line-height: 1.6; color: #e8e2d0;
-  overflow-x: auto; margin: 0;
+  overflow-x: auto; margin: 0; min-height: 120px;
 }
+.io-box pre { margin: 0; white-space: pre-wrap; color: #e8e2d0; font-family: var(--mono); font-size: 12px; line-height: 1.6; }
 .transform-code-wrap { margin-top: 8px; }
+
+/* 变换函数输出可视化 */
+.tf-table { width: 100%; border-collapse: collapse; font-size: 11px; font-family: var(--mono); table-layout: fixed; }
+.tf-table th { text-align: left; padding: 4px 6px; background: var(--primary); color: var(--card); font-weight: 500; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tf-table th:first-child { border-radius: 4px 0 0 0; }
+.tf-table th:last-child { border-radius: 0 4px 0 0; }
+.tf-table td { padding: 3px 6px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cfcbc0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tf-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.tf-row-highlight td { background: rgba(46,125,82,0.15); color: #c7e6d3; }
+.tf-note { margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--accent); }
+.tf-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.tf-chip {
+  display: inline-block; padding: 4px 10px; border-radius: 14px;
+  background: var(--primary-3); color: var(--card); font-family: var(--mono); font-size: 12px;
+}
+.tf-chip-sm { padding: 2px 8px; font-size: 11px; }
+.tf-bignum { text-align: center; padding: 24px 0; }
+.tf-num { font-family: var(--serif); font-size: 56px; font-weight: 800; color: var(--accent); }
+.tf-unit { font-size: 20px; color: var(--accent-2); margin-left: 4px; }
+.tf-bignum-label { margin-top: 8px; font-family: var(--mono); font-size: 12px; color: #8a887e; }
+.tf-groups { display: flex; flex-direction: column; gap: 10px; }
+.tf-group-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 12px; }
+.tf-group-title { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 8px; font-weight: 600; }
+.tf-group-title span { color: #8a887e; font-weight: 400; }
+.tf-bars { display: flex; flex-direction: column; gap: 10px; padding: 6px 0; }
+.tf-bar-row { display: flex; align-items: center; gap: 10px; }
+.tf-bar-label { font-family: var(--mono); font-size: 12px; color: #cfcbc0; width: 70px; flex-shrink: 0; }
+.tf-bar-track { flex: 1; height: 22px; background: rgba(255,255,255,0.06); border-radius: 4px; position: relative; overflow: hidden; }
+.tf-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary-3), var(--accent)); border-radius: 4px; transition: width .4s; }
+.tf-bar-val { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 11px; color: var(--card); font-weight: 600; }
+.tf-matrix td { text-align: center; width: 60px; }
+.tf-cell-on { background: rgba(212,160,76,0.25); color: var(--accent); font-weight: 700; }
+.tf-hist { display: flex; align-items: flex-end; gap: 12px; height: 140px; padding: 10px 0; }
+.tf-hist-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+.tf-hist-bar { width: 100%; max-width: 48px; background: linear-gradient(180deg, var(--accent), var(--accent-2)); border-radius: 4px 4px 0 0; min-height: 4px; transition: height .4s; }
+.tf-hist-val { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: 4px; }
+.tf-hist-label { font-family: var(--mono); font-size: 10px; color: #8a887e; margin-top: 2px; }
 
 /* ===== 16. 1.5 Data-Join ===== */
 .join-controls { display: flex; gap: 8px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
@@ -292,8 +329,8 @@ a:hover { color: var(--primary); }
   font-family: var(--mono); font-size: 12px; color: var(--ink-2); cursor: pointer;
 }
 .key-toggle input { accent-color: var(--primary); }
-.join-viz { background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; min-height: 200px; }
-.join-viz svg { width: 100%; height: auto; }
+.join-viz { background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; min-height: 240px; overflow: visible; }
+.join-viz svg { width: 100%; height: auto; overflow: visible; }
 
 /* ===== 17. Quiz 知识闯关 ===== */
 .quiz { padding: clamp(56px, 8vw, 80px) 0; background: var(--bg-2); border-top: 1px solid var(--line); }
