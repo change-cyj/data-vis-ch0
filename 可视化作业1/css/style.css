@@ -1,0 +1,1089 @@
+/* ============================================================
+   布局之道 · 页面布局教学
+   设计令牌 · 深墨绿主色 + 琥珀金 accent，浅色暖调
+   ============================================================ */
+:root {
+  --bg: #f5f2ea;
+  --bg-2: #ebe6d8;
+  --bg-3: #e3ddca;
+  --card: #fffdf8;
+  --card-2: #faf6ea;
+  --ink: #1a1a16;
+  --ink-2: #5a5852;
+  --ink-3: #8a887e;
+  --ink-4: #b0aea2;
+  --primary: #0f2419;        /* 深墨绿 - 主色 */
+  --primary-2: #1a3a2e;
+  --primary-3: #2d5a45;
+  --accent: #d4a04c;         /* 琥珀金 - accent */
+  --accent-2: #b8842f;
+  --accent-soft: #e8c891;
+  --ok: #2e7d52;             /* 成功 - 沉稳绿 */
+  --warn: #c77d3c;           /* 警告 - 沉稳橙 */
+  --bad: #b5483a;            /* 错误 - 沉稳红 */
+  --line: #d9d2c0;
+  --line-2: #e8e2d0;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 8px rgba(15, 36, 25, 0.05);
+  --shadow-hover: 0 6px 20px rgba(15, 36, 25, 0.10);
+  --serif: "Fraunces", "Noto Serif SC", "SimSun", serif;
+  --sans: "Sora", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono: "JetBrains Mono", "Cascadia Code", "Consolas", monospace;
+}
+
+/* ============================================================
+   1. 基础重置
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--accent-2); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--primary); }
+::selection { background: var(--accent); color: var(--card); }
+
+/* 容器 */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+/* ============================================================
+   2. 顶部进度条
+   ============================================================ */
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--line-2); z-index: 200;
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width .15s;
+}
+
+/* ============================================================
+   3. 顶部导航
+   ============================================================ */
+.topbar {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 150;
+  background: rgba(245, 242, 234, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow .3s;
+}
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 54px;
+}
+.brand {
+  font-family: var(--mono); font-size: 14px;
+  color: var(--accent-2); letter-spacing: 1px; font-weight: 600;
+}
+.brand:hover { color: var(--primary); }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  color: var(--ink-2); font-size: 13px; font-family: var(--mono);
+  padding: 6px 10px; border-radius: 6px; transition: all .2s;
+}
+.nav-links a:hover {
+  background: var(--bg-2);
+}
+.nav-links a.active {
+  color: var(--primary);
+  background: var(--bg-2);
+  border-left: 2px solid var(--accent);
+}
+
+/* ============================================================
+   4. 语言切换
+   ============================================================ */
+.lang-toggle {
+  font-family: var(--mono); font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent-2);
+}
+
+/* ============================================================
+   5. 侧边导航点
+   ============================================================ */
+.side-dots {
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.side-dots a {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-4);
+  transition: background .25s;
+}
+.side-dots a:hover { background: var(--accent); }
+.side-dots a.active { background: var(--accent); }
+.side-dots a span {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 10px;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity .25s;
+  pointer-events: none;
+}
+.side-dots a:hover span { opacity: 1; }
+
+/* ============================================================
+   6. Hero 区
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--card);
+  overflow: hidden;
+}
+.data-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 253, 248, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  z-index: 0;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 120px 0 80px;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(56px, 9vw, 104px);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+}
+.hero-num {
+  color: var(--accent);
+  vertical-align: super;
+  font-size: 0.6em;
+}
+.hero-sub {
+  font-size: clamp(15px, 2vw, 19px);
+  color: rgba(255, 253, 248, 0.7);
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: center;
+  margin-bottom: 44px;
+  border-top: 1px solid rgba(255, 253, 248, 0.15);
+  border-bottom: 1px solid rgba(255, 253, 248, 0.15);
+  padding: 24px 0;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255, 253, 248, 0.6);
+}
+.hero-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: rgba(255, 253, 248, 0.5);
+  margin-bottom: 32px;
+}
+.hero-scroll {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 1px solid rgba(255, 253, 248, 0.3);
+  border-radius: 999px;
+  color: var(--card);
+  font-size: 13px;
+  font-family: var(--mono);
+  transition: all .2s;
+}
+.hero-scroll:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================================
+   7. 案例引导
+   ============================================================ */
+.case-intro {
+  padding: clamp(48px, 8vw, 80px) 0;
+  text-align: center;
+}
+.case-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  color: var(--accent-2);
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.case-intro h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.case-lead {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink-2);
+  font-size: 16px;
+}
+
+/* ============================================================
+   8. 章节
+   ============================================================ */
+.chapter {
+  padding: clamp(56px, 8vw, 88px) 0;
+  border-top: 1px solid var(--line);
+}
+.chapter.alt { background: var(--bg-2); }
+.chap-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.chap-no {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent-2);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.chap-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.chap-lead {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--ink-2);
+  font-size: 16px;
+}
+
+/* ============================================================
+   9. 三部分网格（讲解 + 代码）
+   ============================================================ */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.part-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--accent-2);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--accent);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   10. 讲解区
+   ============================================================ */
+.part-explain {
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.part-explain p { margin-bottom: 12px; }
+.part-explain code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  padding: 2px 6px;
+  background: var(--bg-3);
+  border-radius: 4px;
+  color: var(--primary);
+}
+.part-explain b { color: var(--primary); }
+
+/* ============================================================
+   11. 代码块
+   ============================================================ */
+.code-block {
+  background: #1a1a16;
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  overflow-x: auto;
+  margin: 0;
+}
+.code-block code {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: #e8e2d0;
+}
+/* 语法高亮 */
+.c-com { color: #6b7a6f; }    /* 注释 */
+.c-sel { color: #d4a04c; }    /* 选择器 */
+.c-prop { color: #8fb8a3; }   /* 属性名 */
+.c-val { color: #e8c891; }    /* 值 */
+.c-str { color: #c77d3c; }    /* 字符串 */
+.c-kw { color: #b8842f; }     /* 关键字 */
+
+/* ============================================================
+   12. 演示区
+   ============================================================ */
+.demo-stage {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  box-shadow: var(--shadow);
+}
+.demo-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.demo-head .part-label {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.demo-head h3 {
+  font-size: 16px;
+  color: var(--primary);
+}
+.demo-desc {
+  color: var(--ink-3);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.demo-body { min-height: 200px; }
+
+/* ============================================================
+   13. Quiz 知识闯关
+   ============================================================ */
+.quiz {
+  padding: clamp(56px, 8vw, 88px) 0;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  box-shadow: var(--shadow);
+  max-width: 720px;
+  margin: 0 auto;
+}
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.quiz-progress { font-family: var(--mono); }
+.quiz-score b { color: var(--primary); }
+.quiz-body { margin-bottom: 20px; }
+.quiz-body h4 {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink-2);
+  font-size: 14px;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: all .2s;
+}
+.quiz-opt:hover {
+  border-color: var(--accent);
+  background: var(--card-2);
+}
+.quiz-opt.correct {
+  border-color: var(--ok);
+  background: rgba(46, 125, 82, 0.08);
+  color: var(--ok);
+}
+.quiz-opt.wrong {
+  border-color: var(--bad);
+  background: rgba(181, 72, 58, 0.08);
+  color: var(--bad);
+}
+.quiz-opt.disabled { pointer-events: none; }
+.quiz-explain {
+  padding: 12px 16px;
+  margin-top: 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  font-size: 13px;
+  color: var(--ink-2);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.7;
+}
+.quiz-explain b { color: var(--primary); }
+.quiz-explain code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  padding: 2px 6px;
+  background: var(--bg-3);
+  border-radius: 4px;
+  color: var(--primary);
+}
+.quiz-footer { text-align: right; }
+.quiz-btn {
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.quiz-btn.next {
+  background: var(--primary);
+  color: var(--card);
+  border: 0;
+}
+.quiz-btn.next:hover { background: var(--primary-3); }
+.quiz-btn.next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.quiz-btn.restart {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  margin-left: 8px;
+}
+.quiz-btn.restart:hover {
+  border-color: var(--accent);
+  color: var(--accent-2);
+}
+.quiz-result {
+  text-align: center;
+  padding: 20px;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.quiz-result.pass {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.quiz-result.fail {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+/* ============================================================
+   14. 页脚
+   ============================================================ */
+.site-footer {
+  padding: 32px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+.site-footer p {
+  color: var(--ink-3);
+  font-size: 13px;
+  font-family: var(--mono);
+}
+
+/* ============================================================
+   15. reveal 滚动动画
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   16. 盒模型演示 .bm-demo
+   ============================================================ */
+.bm-stage {
+  width: 200px;
+  margin: 20px auto;
+  border: 2px dashed var(--accent);
+  padding: 0;
+  position: relative;
+  min-height: 80px;
+}
+.bm-box {
+  background: var(--accent-soft);
+  color: var(--primary);
+  text-align: center;
+  /* padding / border 由内联 style 控制 */
+}
+.bm-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bm-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bm-ctrl label {
+  width: 120px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.bm-ctrl input[type=range] { flex: 1; }
+.bm-ctrl .bm-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  width: 48px;
+  text-align: right;
+  color: var(--accent-2);
+}
+.bm-toggle {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.bm-toggle button {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .2s;
+}
+.bm-toggle button:hover { border-color: var(--accent); }
+.bm-toggle button.active {
+  background: var(--primary);
+  color: var(--card);
+  border-color: var(--primary);
+}
+.bm-readout {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg-2);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  line-height: 1.7;
+}
+.bm-readout b { color: var(--primary); }
+
+/* ============================================================
+   17. Flex 演示 .fl-demo
+   ============================================================ */
+.fl-stage {
+  height: 160px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-2);
+  padding: 8px;
+  display: flex;
+}
+.fl-item {
+  flex: 1;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 30px;
+}
+.fl-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fl-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fl-ctrl label {
+  width: 130px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.fl-ctrl select {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ============================================================
+   18. Grid 演示 .gr-demo
+   ============================================================ */
+.gr-stage {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-2);
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+  min-height: 200px;
+}
+.gr-item {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px;
+}
+.gr-item.span {
+  background: var(--primary-3);
+  color: var(--card);
+}
+.gr-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gr-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gr-ctrl label {
+  width: 120px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.gr-ctrl input[type=range] { flex: 1; }
+.gr-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  width: 48px;
+  text-align: right;
+  color: var(--accent-2);
+}
+.gr-toggle {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.gr-toggle button {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .2s;
+}
+.gr-toggle button:hover { border-color: var(--accent); }
+.gr-toggle button.active {
+  background: var(--primary);
+  color: var(--card);
+  border-color: var(--primary);
+}
+
+/* ============================================================
+   19. 响应式演示 .rs-demo
+   ============================================================ */
+.rs-viewport {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 280px;
+  background: var(--card);
+}
+.rs-resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  background: var(--accent);
+  z-index: 10;
+}
+.rs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "header" "main" "sidebar" "footer";
+  height: 100%;
+  gap: 1px;
+  background: var(--line);
+}
+.rs-grid .rs-header {
+  background: var(--primary);
+  color: var(--card);
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.rs-grid .rs-side {
+  background: var(--card-2);
+  grid-area: sidebar;
+  padding: 8px;
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.rs-grid .rs-main {
+  background: var(--card);
+  grid-area: main;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 4px;
+}
+.rs-grid .rs-main .rs-metric {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  height: 24px;
+}
+.rs-grid .rs-footer {
+  background: var(--bg-3);
+  grid-area: footer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  color: var(--ink-3);
+}
+.rs-readout {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--bg-2);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--ink-2);
+  text-align: center;
+}
+.rs-readout b { color: var(--primary); }
+
+/* ============================================================
+   20. 流式排版演示 .ft-demo
+   ============================================================ */
+.ft-stage {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  padding: 24px;
+  text-align: center;
+}
+.ft-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 8vw, 3rem);
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.ft-body {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  color: var(--ink-2);
+}
+.ft-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ft-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ft-ctrl label {
+  width: 120px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.ft-ctrl input[type=range] { flex: 1; }
+.ft-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  width: 60px;
+  text-align: right;
+  color: var(--accent-2);
+}
+
+/* ============================================================
+   21. 仪表盘演示 .db-demo
+   ============================================================ */
+.db-frame {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 420px;
+  background: var(--line);
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: 40px 1fr 28px;
+  grid-template-areas:
+    "head head"
+    "side main"
+    "foot foot";
+  gap: 1px;
+}
+.db-head {
+  background: var(--primary);
+  color: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: relative;
+  grid-area: head;
+}
+.db-head .db-brand {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+.db-head .db-actions {
+  display: flex;
+  gap: 8px;
+}
+.db-head .db-actions span {
+  background: var(--primary-3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.db-head .db-live {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: var(--ok);
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+.db-side {
+  background: var(--card-2);
+  padding: 12px 8px;
+  font-size: 12px;
+  color: var(--ink-2);
+  grid-area: side;
+}
+.db-side .db-nav-item {
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+.db-side .db-nav-item.active {
+  background: var(--bg-3);
+  color: var(--primary);
+  font-weight: 600;
+}
+.db-main {
+  background: var(--card);
+  padding: 12px;
+  overflow: auto;
+  grid-area: main;
+}
+.db-main .db-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.db-main .db-toolbar h4 {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--primary);
+}
+.db-main .db-toolbar .db-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-3);
+}
+.db-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+}
+.db-metric {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  position: relative;
+}
+.db-metric .db-m-label {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+.db-metric .db-m-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: var(--serif);
+}
+.db-metric .db-m-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--ok);
+  color: #fff;
+}
+.db-foot {
+  background: var(--bg-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 11px;
+  color: var(--ink-3);
+  grid-area: foot;
+}
+
+/* ============================================================
+   22. 演示提示
+   ============================================================ */
+.demo-tip {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: rgba(212, 160, 76, 0.08);
+  border-left: 3px solid var(--accent);
+  font-size: 13px;
+  color: var(--ink-2);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.7;
+}
+.demo-tip b { color: var(--primary); }
+
+/* ============================================================
+   23. 响应式
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .side-dots { display: none; }
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-stats { gap: 20px; }
+  .stat-num { font-size: 28px; }
+  .container { padding: 0 20px; }
+  .quiz-card { padding: 22px 20px; }
+  .db-frame {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 1fr 28px;
+    grid-template-areas:
+      "head"
+      "main"
+      "foot";
+  }
+  .db-side { display: none; }
+}

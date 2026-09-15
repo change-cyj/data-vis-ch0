@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局之道 — 页面布局教学</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260918">
+</head>
+<body>
+
+  <!-- 顶部进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- 顶部导航 -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a href="#hero" class="brand" data-i18n="brand">布局之道</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#sec-1-1" data-sec="1-1" data-i18n="nav.1-1">1.1 盒模型</a>
+        <a href="#sec-1-2" data-sec="1-2" data-i18n="nav.1-2">1.2 定位</a>
+        <a href="#sec-2-1" data-sec="2-1" data-i18n="nav.2-1">2.1 Flex</a>
+        <a href="#sec-2-2" data-sec="2-2" data-i18n="nav.2-2">2.2 Grid</a>
+        <a href="#sec-3-1" data-sec="3-1" data-i18n="nav.3-1">3.1 响应式</a>
+        <a href="#sec-3-2" data-sec="3-2" data-i18n="nav.3-2">3.2 流式</a>
+        <a href="#sec-4-1" data-sec="4-1" data-i18n="nav.4-1">4.1 实战</a>
+      </nav>
+      <button class="lang-toggle" id="langToggle" data-i18n="langLabel">EN</button>
+    </div>
+  </header>
+
+  <!-- 侧边导航点 -->
+  <aside class="side-dots" id="sideDots">
+    <a href="#hero" data-sec="hero" class="active"><span data-i18n="sideDots.hero">引言</span></a>
+    <a href="#sec-1-1" data-sec="1-1"><span data-i18n="sideDots.1-1">1.1</span></a>
+    <a href="#sec-1-2" data-sec="1-2"><span data-i18n="sideDots.1-2">1.2</span></a>
+    <a href="#sec-2-1" data-sec="2-1"><span data-i18n="sideDots.2-1">2.1</span></a>
+    <a href="#sec-2-2" data-sec="2-2"><span data-i18n="sideDots.2-2">2.2</span></a>
+    <a href="#sec-3-1" data-sec="3-1"><span data-i18n="sideDots.3-1">3.1</span></a>
+    <a href="#sec-3-2" data-sec="3-2"><span data-i18n="sideDots.3-2">3.2</span></a>
+    <a href="#sec-4-1" data-sec="4-1"><span data-i18n="sideDots.4-1">4.1</span></a>
+    <a href="#quiz" data-sec="quiz"><span data-i18n="sideDots.quiz">闯关</span></a>
+  </aside>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero" data-sec="hero">
+    <canvas id="dataCanvas" class="data-canvas"></canvas>
+    <div class="hero-grid-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-eyebrow" data-i18n="heroEyebrow">页面布局教学</div>
+      <h1 class="hero-title" data-i18n="heroTitle">布局<span class="hero-num">L</span></h1>
+      <p class="hero-sub" data-i18n="heroSub">盒模型 · Flexbox · Grid · 响应式 · 实战仪表盘</p>
+      <div class="hero-stats" id="heroStats">
+        <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="heroStats[0].label">小节</span></div>
+        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label" data-i18n="heroStats[1].label">⭐ 核心原则</span></div>
+        <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label" data-i18n="heroStats[2].label">交互演示</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label" data-i18n="heroStats[3].label">闯关题</span></div>
+      </div>
+      <div class="hero-meta"><span data-i18n="heroMeta">中国石油大学（华东）</span></div>
+      <a href="#caseIntro" class="hero-scroll" data-i18n="heroScroll">向下滚动 ↓</a>
+    </div>
+  </section>
+
+  <!-- ============ 案例引导 ============ -->
+  <section class="case-intro reveal" id="caseIntro">
+    <div class="container">
+      <div class="case-tag" data-i18n="caseIntro.tag">案例驱动</div>
+      <h2 data-i18n="caseIntro.title">贯穿案例 · 咖啡店分析仪表盘</h2>
+      <p class="case-lead" data-i18n="caseIntro.lead">我们将为一家咖啡店构建一个数据分析仪表盘……</p>
+    </div>
+  </section>
+
+  <!-- ============ 1.1 盒模型 ============ -->
+  <section class="chapter" id="sec-1-1" data-sec="1-1">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.1-1">1.1</div>
+        <h2 data-i18n="1-1.title">盒模型与正常流</h2>
+        <p class="chap-lead" data-i18n="1-1.lead">每个元素都是一个盒子……</p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="1-1.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="1-1.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="1-1.demoTitle">盒模型实时演算</h3>
+        </div>
+        <p class="demo-desc" data-i18n="1-1.demoDesc"></p>
+        <div class="demo-body" id="demo-1-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 1.2 定位 ============ -->
+  <section class="chapter alt" id="sec-1-2" data-sec="1-2">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.1-2">1.2</div>
+        <h2 data-i18n="1-2.title">显示类型与定位</h2>
+        <p class="chap-lead" data-i18n="1-2.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="1-2.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="1-2.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="1-2.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="1-2.demoDesc"></p>
+        <div class="demo-body" id="demo-1-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2.1 Flexbox ============ -->
+  <section class="chapter" id="sec-2-1" data-sec="2-1">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.2-1">2.1</div>
+        <h2 data-i18n="2-1.title">Flexbox 一维布局</h2>
+        <p class="chap-lead" data-i18n="2-1.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="2-1.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="2-1.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="2-1.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="2-1.demoDesc"></p>
+        <div class="demo-body" id="demo-2-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2.2 Grid ============ -->
+  <section class="chapter alt" id="sec-2-2" data-sec="2-2">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.2-2">2.2</div>
+        <h2 data-i18n="2-2.title">Grid 二维布局</h2>
+        <p class="chap-lead" data-i18n="2-2.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="2-2.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="2-2.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="2-2.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="2-2.demoDesc"></p>
+        <div class="demo-body" id="demo-2-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.1 响应式 ============ -->
+  <section class="chapter" id="sec-3-1" data-sec="3-1">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.3-1">3.1</div>
+        <h2 data-i18n="3-1.title">响应式断点</h2>
+        <p class="chap-lead" data-i18n="3-1.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="3-1.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="3-1.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="3-1.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="3-1.demoDesc"></p>
+        <div class="demo-body" id="demo-3-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.2 流式排版 ============ -->
+  <section class="chapter alt" id="sec-3-2" data-sec="3-2">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.3-2">3.2</div>
+        <h2 data-i18n="3-2.title">流式排版与间距</h2>
+        <p class="chap-lead" data-i18n="3-2.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="3-2.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="3-2.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="3-2.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="3-2.demoDesc"></p>
+        <div class="demo-body" id="demo-3-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4.1 实战案例 ============ -->
+  <section class="chapter" id="sec-4-1" data-sec="4-1">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no" data-i18n="chapNo.4-1">4.1</div>
+        <h2 data-i18n="4-1.title">实战：仪表盘组装</h2>
+        <p class="chap-lead" data-i18n="4-1.lead"></p>
+      </div>
+      <div class="lesson-grid reveal">
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
+          <div class="part-explain" data-i18n="4-1.explain" data-html></div>
+        </div>
+        <div class="lesson-col">
+          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
+          <pre class="code-block"><code data-i18n="4-1.code" data-html></code></pre>
+        </div>
+      </div>
+      <div class="demo-stage reveal">
+        <div class="demo-head">
+          <div class="part-label" data-i18n="partLabel.demo">演示</div>
+          <h3 data-i18n="4-1.demoTitle"></h3>
+        </div>
+        <p class="demo-desc" data-i18n="4-1.demoDesc"></p>
+        <div class="demo-body" id="demo-4-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 知识闯关 ============ -->
+  <section class="quiz" id="quiz" data-sec="quiz">
+    <div class="container">
+      <div class="chap-head reveal">
+        <div class="chap-no">★</div>
+        <h2 data-i18n="quiz.title">知识闯关</h2>
+        <p class="chap-lead" data-i18n="quiz.lead">5 道题检验本章理解</p>
+      </div>
+      <div class="quiz-card reveal">
+        <div class="quiz-meta">
+          <span class="quiz-progress" id="quizProgress">第 1 / 5 题</span>
+          <span class="quiz-score"><span data-i18n="quiz.score">得分</span>：<b id="quizScore">0</b></span>
+        </div>
+        <div class="quiz-body" id="quizBody"></div>
+        <div class="quiz-footer">
+          <button class="quiz-btn next" id="quizNext" disabled data-i18n="quiz.next">下一题 →</button>
+          <button class="quiz-btn restart" id="quizRestart" style="display:none" data-i18n="quiz.restart">↺ 重新开始</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p data-i18n="footer">页面布局教学 · 案例式</p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20260918"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="js/app.js?v=20260918"></script>
+</body>
+</html>
