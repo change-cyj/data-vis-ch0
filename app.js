@@ -116,7 +116,7 @@
   function renderTable(d) {
     document.getElementById("table-count").textContent = "共 " + d.length + " 条";
     const tbody = document.querySelector("#data-table tbody");
-    tbody.innerHTML = d.slice(0, 10).map((r) =>
+    tbody.innerHTML = d.map((r) =>
       "<tr><td>" + r.id + "</td><td>" + r.name + "</td><td>" + r.gender +
       "</td><td>" + r.birthday + "</td><td>" + r.age + "</td><td>" + r.class + "</td></tr>"
     ).join("");
