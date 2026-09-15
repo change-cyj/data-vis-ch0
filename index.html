@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>布局之道 — 页面布局教学</title>
+  <title>第 1 章 · 数据 — 可视化导论</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260918">
+  <link rel="stylesheet" href="css/style.css?v=20260915">
 </head>
 <body>
 
@@ -17,260 +17,430 @@
   <!-- 顶部导航 -->
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
-      <a href="#hero" class="brand" data-i18n="brand">布局之道</a>
+      <a href="#hero" class="brand">CH.01 / 数据</a>
       <nav class="nav-links" id="navLinks">
-        <a href="#sec-1-1" data-sec="1-1" data-i18n="nav.1-1">1.1 盒模型</a>
-        <a href="#sec-1-2" data-sec="1-2" data-i18n="nav.1-2">1.2 定位</a>
-        <a href="#sec-2-1" data-sec="2-1" data-i18n="nav.2-1">2.1 Flex</a>
-        <a href="#sec-2-2" data-sec="2-2" data-i18n="nav.2-2">2.2 Grid</a>
-        <a href="#sec-3-1" data-sec="3-1" data-i18n="nav.3-1">3.1 响应式</a>
-        <a href="#sec-3-2" data-sec="3-2" data-i18n="nav.3-2">3.2 流式</a>
-        <a href="#sec-4-1" data-sec="4-1" data-i18n="nav.4-1">4.1 实战</a>
+        <a href="#sec-1-1" data-sec="1-1">1.1 数据加载</a>
+        <a href="#sec-1-2" data-sec="1-2">1.2 数据定义</a>
+        <a href="#sec-1-3" data-sec="1-3">1.3 数据属性</a>
+        <a href="#sec-1-4" data-sec="1-4">1.4 数据变换</a>
+        <a href="#sec-1-5" data-sec="1-5">1.5 选择器</a>
       </nav>
-      <button class="lang-toggle" id="langToggle" data-i18n="langLabel">EN</button>
     </div>
   </header>
 
   <!-- 侧边导航点 -->
   <aside class="side-dots" id="sideDots">
-    <a href="#hero" data-sec="hero" class="active"><span data-i18n="sideDots.hero">引言</span></a>
-    <a href="#sec-1-1" data-sec="1-1"><span data-i18n="sideDots.1-1">1.1</span></a>
-    <a href="#sec-1-2" data-sec="1-2"><span data-i18n="sideDots.1-2">1.2</span></a>
-    <a href="#sec-2-1" data-sec="2-1"><span data-i18n="sideDots.2-1">2.1</span></a>
-    <a href="#sec-2-2" data-sec="2-2"><span data-i18n="sideDots.2-2">2.2</span></a>
-    <a href="#sec-3-1" data-sec="3-1"><span data-i18n="sideDots.3-1">3.1</span></a>
-    <a href="#sec-3-2" data-sec="3-2"><span data-i18n="sideDots.3-2">3.2</span></a>
-    <a href="#sec-4-1" data-sec="4-1"><span data-i18n="sideDots.4-1">4.1</span></a>
-    <a href="#quiz" data-sec="quiz"><span data-i18n="sideDots.quiz">闯关</span></a>
+    <a href="#hero" data-sec="hero" class="active"><span>引言</span></a>
+    <a href="#sec-1-1" data-sec="1-1"><span>1.1</span></a>
+    <a href="#sec-1-2" data-sec="1-2"><span>1.2</span></a>
+    <a href="#sec-1-3" data-sec="1-3"><span>1.3</span></a>
+    <a href="#sec-1-4" data-sec="1-4"><span>1.4</span></a>
+    <a href="#sec-1-5" data-sec="1-5"><span>1.5</span></a>
+    <a href="#quiz" data-sec="quiz"><span>闯关</span></a>
   </aside>
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero" data-sec="hero">
     <canvas id="dataCanvas" class="data-canvas"></canvas>
-    <div class="hero-grid-bg"></div>
     <div class="container hero-inner">
-      <div class="hero-eyebrow" data-i18n="heroEyebrow">页面布局教学</div>
-      <h1 class="hero-title" data-i18n="heroTitle">布局<span class="hero-num">L</span></h1>
-      <p class="hero-sub" data-i18n="heroSub">盒模型 · Flexbox · Grid · 响应式 · 实战仪表盘</p>
+      <div class="hero-eyebrow">可视化导论 · 第 1 章</div>
+      <h1 class="hero-title">数据<span class="hero-num">01</span></h1>
+      <p class="hero-sub">CSV 加载 · DIKW 金字塔 · Stevens × Mackinlay · 数据变换 · Data-Join</p>
       <div class="hero-stats" id="heroStats">
-        <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="heroStats[0].label">小节</span></div>
-        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label" data-i18n="heroStats[1].label">⭐ 核心原则</span></div>
-        <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label" data-i18n="heroStats[2].label">交互演示</span></div>
-        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label" data-i18n="heroStats[3].label">闯关题</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">小节</span></div>
+        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label">核心概念</span></div>
+        <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label">交互演示</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">闯关题</span></div>
       </div>
-      <div class="hero-meta"><span data-i18n="heroMeta">中国石油大学（华东）</span></div>
-      <a href="#caseIntro" class="hero-scroll" data-i18n="heroScroll">向下滚动 ↓</a>
+      <div class="hero-meta"><span>以 80 名新生数据为贯穿案例</span></div>
+      <a href="#sec-1-1" class="hero-scroll">向下滚动 ↓</a>
     </div>
   </section>
 
-  <!-- ============ 案例引导 ============ -->
-  <section class="case-intro reveal" id="caseIntro">
-    <div class="container">
-      <div class="case-tag" data-i18n="caseIntro.tag">案例驱动</div>
-      <h2 data-i18n="caseIntro.title">贯穿案例 · 咖啡店分析仪表盘</h2>
-      <p class="case-lead" data-i18n="caseIntro.lead">我们将为一家咖啡店构建一个数据分析仪表盘……</p>
-    </div>
-  </section>
-
-  <!-- ============ 1.1 盒模型 ============ -->
+  <!-- ============ 1.1 数据加载与类型转换 ============ -->
   <section class="chapter" id="sec-1-1" data-sec="1-1">
     <div class="container">
       <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.1-1">1.1</div>
-        <h2 data-i18n="1-1.title">盒模型与正常流</h2>
-        <p class="chap-lead" data-i18n="1-1.lead">每个元素都是一个盒子……</p>
+        <div class="chap-no">1.1</div>
+        <h2>数据加载与类型转换</h2>
+        <p class="chap-lead">从 CSV 文件读取 80 条新生记录，理解 d3.csv 的加载与类型转换机制。</p>
       </div>
+
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="1-1.explain" data-html></div>
+          <div class="part-label">讲解</div>
+          <div class="part-explain">
+            <p>CSV 是纯文本格式，<code>d3.csv()</code> 解析后<b>所有字段默认都是 String</b>。如果直接用 <code>d.age</code> 做加法，结果会是字符串拼接而非数值运算。</p>
+            <p>解决方法是在 <code>d3.csv(url, row)</code> 的第二个参数 <b>row 回调</b> 中做类型转换：用 <code>+d['年龄']</code> 转 Number，用 <code>new Date(d['生日'])</code> 转 Date。</p>
+            <p>转换后的数据才能参与后续的统计、分组和可视化。</p>
+          </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="1-1.code" data-html></code></pre>
+          <div class="part-label">关键代码</div>
+<pre class="code-block"><code><span class="c">// 字段映射：中文列名 → 英文属性</span>
+<span class="k">const</span> map = { <span class="s">"序号"</span>:<span class="s">"id"</span>, <span class="s">"姓名"</span>:<span class="s">"name"</span>, <span class="s">"年龄"</span>:<span class="s">"age"</span> };
+
+<span class="c">// row 回调：逐行转换类型</span>
+<span class="k">function</span> transformRow(d) {
+  <span class="k">return</span> {
+    id: +d[<span class="s">"序号"</span>],              <span class="c">// + 转 Number</span>
+    name: d[<span class="s">"姓名"</span>].trim(),
+    age: +d[<span class="s">"年龄"</span>],             <span class="c">// 数值</span>
+    birthday: <span class="k">new</span> Date(d[<span class="s">"生日"</span>]), <span class="c">// 日期</span>
+    class: d[<span class="s">"班级"</span>].trim(),
+  };
+}
+
+<span class="c">// 一行完成加载 + 转换</span>
+<span class="k">const</span> data = <span class="k">await</span> d3.csv(<span class="s">"data/newstudent.csv"</span>, transformRow);</code></pre>
         </div>
       </div>
+
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="1-1.demoTitle">盒模型实时演算</h3>
+          <div class="part-label">演示</div>
+          <h3>加载 CSV · 类型验证 · 三张图</h3>
         </div>
-        <p class="demo-desc" data-i18n="1-1.demoDesc"></p>
-        <div class="demo-body" id="demo-1-1"></div>
+        <p class="demo-desc">点击按钮加载 newstudent.csv，观察类型转换结果与统计图表。</p>
+
+        <div class="status-line" id="status-line">
+          <span class="status-text">点击按钮加载 80 条学生数据</span>
+          <button class="btn-primary" id="btn-reload">🔄 加载数据</button>
+        </div>
+
+        <div class="verify-box" id="verify-box" style="display:none">
+          <div class="part-label">类型验证</div>
+          <div id="verify-content"></div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head"><span>数据表格</span><span id="table-count"></span></div>
+          <table class="data-table" id="data-table">
+            <thead>
+              <tr><th>序号</th><th>姓名</th><th>性别</th><th>生日</th><th>年龄</th><th>班级</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-card">
+            <div class="chart-title">各班级人数</div>
+            <div class="chart-box" id="chart-bar"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">性别比例</div>
+            <div class="chart-box" id="chart-pie"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">年龄分布</div>
+            <div class="chart-box" id="chart-hist"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 1.2 定位 ============ -->
+  <!-- ============ 1.2 数据定义：DIKW 金字塔 ============ -->
   <section class="chapter alt" id="sec-1-2" data-sec="1-2">
     <div class="container">
       <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.1-2">1.2</div>
-        <h2 data-i18n="1-2.title">显示类型与定位</h2>
-        <p class="chap-lead" data-i18n="1-2.lead"></p>
+        <div class="chap-no">1.2</div>
+        <h2>数据定义：DIKW 金字塔</h2>
+        <p class="chap-lead">从原始数据到智慧的四层递进，理解可视化在信息层的核心作用。</p>
       </div>
+
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="1-2.explain" data-html></div>
+          <div class="part-label">讲解</div>
+          <div class="part-explain">
+            <p>DIKW 金字塔将认知分为四层：<b>数据（Data）→ 信息（Information）→ 知识（Knowledge）→ 智慧（Wisdom）</b>。</p>
+            <p>数据是原始离散的观察值；信息是经过处理、赋予上下文的数据；知识是对信息的提炼理解；智慧是运用知识做决策。</p>
+            <p>可视化的主要目标是<b>信息层</b>——将原始数据转化为可读的图形，帮助人快速获取信息。</p>
+          </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="1-2.code" data-html></code></pre>
+          <div class="part-label">关键代码</div>
+<pre class="code-block"><code><span class="c">// DIKW 四层定义</span>
+<span class="k">const</span> DIKW = [
+  { tier: <span class="s">"wisdom"</span>, name: <span class="s">"智慧"</span>,
+    def: <span class="s">"运用知识做决策"</span> },
+  { tier: <span class="s">"knowledge"</span>, name: <span class="s">"知识"</span>,
+    def: <span class="s">"对信息的提炼理解"</span> },
+  { tier: <span class="s">"information"</span>, name: <span class="s">"信息"</span>,
+    def: <span class="s">"赋予上下文的数据"</span>,
+    viz: <span class="s">"可视化主要目标 ✅"</span> },
+  { tier: <span class="s">"data"</span>, name: <span class="s">"数据"</span>,
+    def: <span class="s">"原始离散观察值"</span>,
+    viz: <span class="s">"原始 CSV / 表格"</span> },
+];
+
+<span class="c">// 梯形绘制：宽度逐层递增</span>
+DIKW.forEach((d, i) => {
+  <span class="k">const</span> ratio = (i + <span class="n">1</span>) / <span class="n">4</span>;
+  <span class="k">const</span> tw = <span class="n">70</span> + ratio * <span class="n">48</span>;
+  <span class="k">const</span> bw = <span class="n">70</span> + (ratio + <span class="n">0.25</span>) * <span class="n">48</span>;
+  g.append(<span class="s">"path"</span>)
+    .attr(<span class="s">"d"</span>, `M ... L ... L ... L ... Z`)
+    .attr(<span class="s">"fill"</span>, d.color);
+});</code></pre>
         </div>
       </div>
+
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="1-2.demoTitle"></h3>
+          <div class="part-label">演示</div>
+          <h3>DIKW 金字塔交互</h3>
         </div>
-        <p class="demo-desc" data-i18n="1-2.demoDesc"></p>
-        <div class="demo-body" id="demo-1-2"></div>
+        <p class="demo-desc">点击金字塔任意层，查看该层的定义、问题、示例与可视化位置。</p>
+
+        <div class="dikw-stage">
+          <div class="dikw-viz" id="dikwViz"></div>
+          <div class="dikw-detail" id="dikwDetail">
+            <div class="dikw-placeholder">← 点击左侧金字塔任一层查看详情</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2.1 Flexbox ============ -->
-  <section class="chapter" id="sec-2-1" data-sec="2-1">
+  <!-- ============ 1.3 数据属性：Stevens × Mackinlay ============ -->
+  <section class="chapter" id="sec-1-3" data-sec="1-3">
     <div class="container">
       <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.2-1">2.1</div>
-        <h2 data-i18n="2-1.title">Flexbox 一维布局</h2>
-        <p class="chap-lead" data-i18n="2-1.lead"></p>
+        <div class="chap-no">1.3</div>
+        <h2>数据属性：Stevens × Mackinlay</h2>
+        <p class="chap-lead">Stevens 测量尺度决定数据能做什么运算，Mackinlay 通道排序决定用什么视觉编码。</p>
       </div>
+
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="2-1.explain" data-html></div>
+          <div class="part-label">讲解</div>
+          <div class="part-explain">
+            <p><b>Stevens 测量尺度</b>将数据分为四类：名义（Nominal）、序数（Ordinal）、区间（Interval）、比率（Ratio）。每类允许的运算不同——名义只能判等，序数可比较大小，区间可加减，比率可乘除。</p>
+            <p><b>Mackinlay 通道排序</b>（1986）将视觉通道按对定量数据的感知有效性排序：位置 ≈ 长度 > 角度 > 面积 > 亮度 > 色相 ……</p>
+            <p>两者结合：<b>数据类型 → 选择合适的视觉通道</b>。定类数据用色相，顺序数据用亮度，定量数据用长度/位置。</p>
+          </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="2-1.code" data-html></code></pre>
+          <div class="part-label">关键代码</div>
+<pre class="code-block"><code><span class="c">// Stevens 四尺度的允许运算</span>
+<span class="k">const</span> STEVENS = {
+  nominal:  { ops: <span class="s">"= / ≠"</span>, ch: <span class="s">"色相"</span> },
+  ordinal:  { ops: <span class="s">"< / >"</span>, ch: <span class="s">"亮度"</span> },
+  interval: { ops: <span class="s">"+ / -"</span>, ch: <span class="s">"位置"</span> },
+  ratio:    { ops: <span class="s">"× / ÷"</span>, ch: <span class="s">"长度"</span> },
+};
+
+<span class="c">// Mackinlay 通道有效性分数</span>
+<span class="k">const</span> channels = [
+  { ch: <span class="s">"位置"</span>, score: <span class="n">1.0</span> },
+  { ch: <span class="s">"长度"</span>, score: <span class="n">0.94</span> },
+  { ch: <span class="s">"角度"</span>, score: <span class="n">0.88</span> },
+  { ch: <span class="s">"面积"</span>, score: <span class="n">0.70</span> },
+  { ch: <span class="s">"亮度"</span>, score: <span class="n">0.82</span> },
+  { ch: <span class="s">"色相"</span>, score: <span class="n">0.85</span> },
+];
+
+<span class="c">// 按分数绘制排序条形图</span>
+x = d3.scaleLinear().domain([<span class="n">0</span>,<span class="n">1</span>]).range([<span class="n">0</span>,w]);
+g.selectAll(<span class="s">"rect"</span>).data(channels).join(<span class="s">"rect"</span>)
+  .attr(<span class="s">"width"</span>, d => x(d.score));</code></pre>
         </div>
       </div>
+
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="2-1.demoTitle"></h3>
+          <div class="part-label">演示</div>
+          <h3>Stevens 卡片 + Mackinlay 通道排序</h3>
         </div>
-        <p class="demo-desc" data-i18n="2-1.demoDesc"></p>
-        <div class="demo-body" id="demo-2-1"></div>
+        <p class="demo-desc">点击 Stevens 卡片查看各尺度的运算与编码通道；下方是 Mackinlay 通道有效性排序图。</p>
+
+        <div class="stevens-grid">
+          <div class="stevens-card" data-tier="nominal">
+            <div class="sc-name">名义</div>
+            <div class="sc-en">Nominal</div>
+            <div class="sc-ops">= / ≠</div>
+          </div>
+          <div class="stevens-card" data-tier="ordinal">
+            <div class="sc-name">序数</div>
+            <div class="sc-en">Ordinal</div>
+            <div class="sc-ops">&lt; / &gt;</div>
+          </div>
+          <div class="stevens-card" data-tier="interval">
+            <div class="sc-name">区间</div>
+            <div class="sc-en">Interval</div>
+            <div class="sc-ops">+ / −</div>
+          </div>
+          <div class="stevens-card" data-tier="ratio">
+            <div class="sc-name">比率</div>
+            <div class="sc-en">Ratio</div>
+            <div class="sc-ops">× / ÷</div>
+          </div>
+        </div>
+
+        <div class="stevens-note" id="stevensNote">
+          <p class="muted">点击上方卡片查看该尺度的运算规则与推荐通道。</p>
+        </div>
+
+        <div class="mackinlay-wrap">
+          <div class="chart-title">Mackinlay 通道有效性排序（定量 / 顺序 / 定性）</div>
+          <div id="mackinlayViz"></div>
+        </div>
+
+        <div class="lab-wrap">
+          <div class="chart-title">可视化通道实验台</div>
+          <p class="muted">同一组数据（4 个班级人数），用不同视觉通道编码，感受感知差异。</p>
+          <div class="lab-buttons">
+            <button class="lab-btn active" data-channel="length">长度</button>
+            <button class="lab-btn" data-channel="color">色相</button>
+            <button class="lab-btn" data-channel="area">面积</button>
+            <button class="lab-btn" data-channel="angle">角度</button>
+          </div>
+          <div class="lab-viz" id="labViz"></div>
+          <div class="lab-readout" id="labReadout"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2.2 Grid ============ -->
-  <section class="chapter alt" id="sec-2-2" data-sec="2-2">
+  <!-- ============ 1.4 数据变换函数 ============ -->
+  <section class="chapter alt" id="sec-1-4" data-sec="1-4">
     <div class="container">
       <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.2-2">2.2</div>
-        <h2 data-i18n="2-2.title">Grid 二维布局</h2>
-        <p class="chap-lead" data-i18n="2-2.lead"></p>
+        <div class="chap-no">1.4</div>
+        <h2>数据变换函数</h2>
+        <p class="chap-lead">D3 提供 map / filter / sort / group / rollup 等函数，将原始数据转化为可视化所需的结构。</p>
       </div>
+
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="2-2.explain" data-html></div>
+          <div class="part-label">讲解</div>
+          <div class="part-explain">
+            <p>D3 的数据变换函数大多可类比数组方法，但<b>返回新数组</b>不修改原数据，且支持更强大的分组聚合。</p>
+            <p><b>map / filter / sort</b> 对应数组的同名方法；<b>reduce</b> 做汇总；<b>group</b> 按键分组保留所有元素（类似 GROUP BY）；<b>rollup</b> 分组后只保留聚合结果（类似 GROUP BY + COUNT）；<b>cross</b> 做笛卡尔积；<b>bin</b> 做分箱（直方图前置步骤）。</p>
+          </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="2-2.code" data-html></code></pre>
+          <div class="part-label">关键代码</div>
+<pre class="code-block"><code><span class="c">// 按班级统计人数（rollup）</span>
+<span class="k">const</span> counts = d3.<span class="k">rollup</span>(
+  data,              <span class="c">// 输入数据</span>
+  v => v.length,     <span class="c">// reducer：每组的聚合</span>
+  d => d.class       <span class="c">// key：分组依据</span>
+);
+<span class="c">// → Map { "软件1班": 24, "软件2班": 20, ... }</span>
+
+<span class="c">// 按班级分组保留所有元素（group）</span>
+<span class="k">const</span> groups = d3.<span class="k">group</span>(data, d => d.class);
+
+<span class="c">// 年龄分箱（bin）</span>
+<span class="k">const</span> bins = d3.<span class="k">bin</span>()
+  .thresholds([<span class="n">17</span>, <span class="n">18</span>])
+  (data.map(d => d.age));</code></pre>
         </div>
       </div>
+
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="2-2.demoTitle"></h3>
+          <div class="part-label">演示</div>
+          <h3>变换函数交互实验台</h3>
         </div>
-        <p class="demo-desc" data-i18n="2-2.demoDesc"></p>
-        <div class="demo-body" id="demo-2-2"></div>
+        <p class="demo-desc">选择不同函数，观察输入数据（8 条学生记录）经过变换后的输出。</p>
+
+        <div class="fn-buttons">
+          <button class="fn-btn active" data-fn="map">map</button>
+          <button class="fn-btn" data-fn="filter">filter</button>
+          <button class="fn-btn" data-fn="sort">sort</button>
+          <button class="fn-btn" data-fn="reduce">reduce</button>
+          <button class="fn-btn" data-fn="group">group</button>
+          <button class="fn-btn" data-fn="rollup">rollup</button>
+          <button class="fn-btn" data-fn="cross">cross</button>
+          <button class="fn-btn" data-fn="bin">bin</button>
+        </div>
+
+        <div class="io-grid">
+          <div class="io-col">
+            <div class="part-label">输入数据</div>
+            <pre class="io-box" id="ioInput"></pre>
+          </div>
+          <div class="io-arrow">→</div>
+          <div class="io-col">
+            <div class="part-label">输出结果</div>
+            <div class="io-box" id="ioOutput"></div>
+          </div>
+        </div>
+
+        <div class="transform-code-wrap">
+          <div class="part-label">对应代码</div>
+          <pre class="code-block"><code id="transformCode"></code></pre>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3.1 响应式 ============ -->
-  <section class="chapter" id="sec-3-1" data-sec="3-1">
+  <!-- ============ 1.5 选择器与 Data-Join ============ -->
+  <section class="chapter" id="sec-1-5" data-sec="1-5">
     <div class="container">
       <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.3-1">3.1</div>
-        <h2 data-i18n="3-1.title">响应式断点</h2>
-        <p class="chap-lead" data-i18n="3-1.lead"></p>
+        <div class="chap-no">1.5</div>
+        <h2>选择器与 Data-Join</h2>
+        <p class="chap-lead">理解 D3 的 enter / update / exit 三态，掌握数据驱动 DOM 的核心机制。</p>
       </div>
-      <div class="lesson-grid reveal">
-        <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="3-1.explain" data-html></div>
-        </div>
-        <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="3-1.code" data-html></code></pre>
-        </div>
-      </div>
-      <div class="demo-stage reveal">
-        <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="3-1.demoTitle"></h3>
-        </div>
-        <p class="demo-desc" data-i18n="3-1.demoDesc"></p>
-        <div class="demo-body" id="demo-3-1"></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ 3.2 流式排版 ============ -->
-  <section class="chapter alt" id="sec-3-2" data-sec="3-2">
-    <div class="container">
-      <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.3-2">3.2</div>
-        <h2 data-i18n="3-2.title">流式排版与间距</h2>
-        <p class="chap-lead" data-i18n="3-2.lead"></p>
-      </div>
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="3-2.explain" data-html></div>
+          <div class="part-label">讲解</div>
+          <div class="part-explain">
+            <p>Data-Join 是 D3 的核心思想：<b>数据与 DOM 元素绑定</b>。当数据变化时，D3 自动计算三种状态：</p>
+            <p><b style="color:var(--ok)">enter</b>：数据多于元素 → 新增元素（绿色）。<b style="color:var(--primary-3)">update</b>：数据与元素一一对应 → 更新属性（墨绿）。<b style="color:var(--bad)">exit</b>：元素多于数据 → 移除元素（红色）。</p>
+            <p>key 函数（如 <code>d => d.id</code>）绑定元素身份，避免数据重排时全部元素错乱——<b>类比 React 的 key</b>。</p>
+          </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="3-2.code" data-html></code></pre>
-        </div>
-      </div>
-      <div class="demo-stage reveal">
-        <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="3-2.demoTitle"></h3>
-        </div>
-        <p class="demo-desc" data-i18n="3-2.demoDesc"></p>
-        <div class="demo-body" id="demo-3-2"></div>
-      </div>
-    </div>
-  </section>
+          <div class="part-label">关键代码</div>
+<pre class="code-block"><code><span class="c">// Data-Join 核心三态</span>
+<span class="k">const</span> sel = svg.selectAll(<span class="s">"circle"</span>)
+  .data(data, d => d.id);  <span class="c">// key 函数</span>
 
-  <!-- ============ 4.1 实战案例 ============ -->
-  <section class="chapter" id="sec-4-1" data-sec="4-1">
-    <div class="container">
-      <div class="chap-head reveal">
-        <div class="chap-no" data-i18n="chapNo.4-1">4.1</div>
-        <h2 data-i18n="4-1.title">实战：仪表盘组装</h2>
-        <p class="chap-lead" data-i18n="4-1.lead"></p>
-      </div>
-      <div class="lesson-grid reveal">
-        <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.explain">讲解</div>
-          <div class="part-explain" data-i18n="4-1.explain" data-html></div>
+<span class="c">// enter：新增</span>
+sel.enter().append(<span class="s">"circle"</span>)
+  .attr(<span class="s">"fill"</span>, green);
+
+<span class="c">// update：更新</span>
+sel.attr(<span class="s">"fill"</span>, dark);
+
+<span class="c">// exit：移除</span>
+sel.exit()
+  .transition().style(<span class="s">"opacity"</span>, <span class="n">0</span>)
+  .remove();
+
+<span class="c">// 合并 enter + update</span>
+sel.enter().append(<span class="s">"circle"</span>)
+  .merge(sel)
+  .attr(<span class="s">"r"</span>, d => d.value);</code></pre>
         </div>
-        <div class="lesson-col">
-          <div class="part-label" data-i18n="partLabel.code">关键代码</div>
-          <pre class="code-block"><code data-i18n="4-1.code" data-html></code></pre>
-        </div>
       </div>
+
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label" data-i18n="partLabel.demo">演示</div>
-          <h3 data-i18n="4-1.demoTitle"></h3>
+          <div class="part-label">演示</div>
+          <h3>Data-Join 三态演示</h3>
         </div>
-        <p class="demo-desc" data-i18n="4-1.demoDesc"></p>
-        <div class="demo-body" id="demo-4-1"></div>
+        <p class="demo-desc">点击按钮添加/删除/打乱元素，观察 enter（绿）/ update（墨绿）/ exit（红）三态变化。切换 key 函数对比效果。</p>
+
+        <div class="join-controls">
+          <button class="btn-primary" id="joinAdd">＋ 添加</button>
+          <button class="btn-ghost" id="joinRemove">－ 删除</button>
+          <button class="btn-ghost" id="joinShuffle">🔀 打乱</button>
+          <button class="btn-ghost" id="joinReset">↺ 重置</button>
+          <label class="key-toggle">
+            <input type="checkbox" id="keyToggle" checked>
+            <span>key 函数 (d => d.id)</span>
+          </label>
+        </div>
+
+        <div class="join-viz" id="joinViz"></div>
       </div>
     </div>
   </section>
@@ -280,18 +450,18 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">★</div>
-        <h2 data-i18n="quiz.title">知识闯关</h2>
-        <p class="chap-lead" data-i18n="quiz.lead">5 道题检验本章理解</p>
+        <h2>知识闯关</h2>
+        <p class="chap-lead">5 道题检验本章核心理解</p>
       </div>
       <div class="quiz-card reveal">
         <div class="quiz-meta">
           <span class="quiz-progress" id="quizProgress">第 1 / 5 题</span>
-          <span class="quiz-score"><span data-i18n="quiz.score">得分</span>：<b id="quizScore">0</b></span>
+          <span class="quiz-score">得分：<b id="quizScore">0</b></span>
         </div>
         <div class="quiz-body" id="quizBody"></div>
         <div class="quiz-footer">
-          <button class="quiz-btn next" id="quizNext" disabled data-i18n="quiz.next">下一题 →</button>
-          <button class="quiz-btn restart" id="quizRestart" style="display:none" data-i18n="quiz.restart">↺ 重新开始</button>
+          <button class="quiz-btn next" id="quizNext" style="display:none">下一题 →</button>
+          <button class="quiz-btn restart" id="quizRestart" style="display:none">↺ 重新开始</button>
         </div>
       </div>
     </div>
@@ -299,12 +469,11 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p data-i18n="footer">页面布局教学 · 案例式</p>
+      <p>数据可视化 · 第 1 章 数据 · 案例式教学</p>
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260918"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="js/app.js?v=20260918"></script>
+  <script src="js/app.js?v=20260915"></script>
 </body>
 </html>
