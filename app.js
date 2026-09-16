@@ -400,34 +400,34 @@
   function initQuiz() {
     const QUIZ = [
       {
-        q: "设置 box-sizing: border-box 后，元素的 width 属性包含哪些部分？",
-        opts: ["仅 content", "content + padding", "content + padding + border", "content + padding + border + margin"],
-        a: 2,
-        exp: "border-box 模式下，width 包含 content + padding + border，但不包含 margin。这让布局计算更直观。",
-      },
-      {
-        q: "以下哪个 position 值会使元素脱离文档流？",
-        opts: ["static", "relative", "absolute", "sticky"],
-        a: 2,
-        exp: "absolute 和 fixed 会使元素脱离文档流。relative 保持原位置占位，sticky 在阈值前是 relative。",
-      },
-      {
-        q: "在 Flex 布局中，justify-content 控制的是哪个方向的对齐？",
-        opts: ["交叉轴", "主轴", "垂直方向", "块方向"],
+        q: "相邻两个块级元素的 margin-top 和 margin-bottom 发生合并时，实际间距取值为？",
+        opts: ["两者之和", "较大值", "较小值", "平均值"],
         a: 1,
-        exp: "justify-content 控制主轴方向对齐，align-items 控制交叉轴方向。flex-direction 决定哪个是主轴。",
+        exp: "margin 合并规则：相邻兄弟元素的上下 margin 取较大值（非相加）。这是 CSS 规范行为，创建 BFC（如 display: flow-root）可消除合并。",
       },
       {
-        q: "CSS Grid 中，repeat(3, 1fr) 表示什么？",
-        opts: ["3 个固定宽度列", "3 个等分剩余空间的列", "3 个 1px 宽的列", "重复 3 次整个网格"],
+        q: "一个 absolute 定位的元素，其包含块是？",
+        opts: ["浏览器视口", "最近的非 static 定位祖先", "body 元素", "html 根元素"],
         a: 1,
-        exp: "repeat(3, 1fr) 创建 3 列，每列等分容器剩余空间。fr 是分数单位，1fr = 1 份。",
+        exp: "absolute 的包含块是最近的 position 非 static 祖先。如果所有祖先都是 static，则回退到初始包含块（视口大小的矩形）。fixed 的包含块是视口，除非祖先有 transform/filter。",
       },
       {
-        q: "移动优先的响应式策略中，媒体查询应该用 min-width 还是 max-width？",
-        opts: ["max-width", "min-width", "都行，无区别", "不需要媒体查询"],
+        q: "Flex 子项内容过大导致溢出容器，最常见的修复方案是？",
+        opts: ["给子项设 overflow: scroll", "给子项设 min-width: 0", "给容器设 overflow: hidden", "给子项设 width: 100%"],
         a: 1,
-        exp: "移动优先：先写小屏样式，用 @media (min-width: ...) 逐步增强大屏。min-width 从小到大递进。",
+        exp: "Flex 子项默认 min-width: auto，不允许收缩到内容以下。设 min-width: 0 解除限制后，flex-shrink 才能生效。这是 Flex 布局中最常见的溢出 bug 根源。",
+      },
+      {
+        q: "repeat(auto-fit, minmax(200px, 1fr)) 实现了什么效果？",
+        opts: ["固定 3 列等宽布局", "根据容器宽度自动决定列数，无需媒体查询", "创建 200px 固定列", "无限列自动填充"],
+        a: 1,
+        exp: "auto-fit 让网格根据容器可用空间自动决定列数：容器够宽就多列，不够宽就少列，每列最小 200px、最大等分。这是 Grid 独有的无媒体查询响应式方案。",
+      },
+      {
+        q: "容器查询 @container 与媒体查询 @media 的根本区别是？",
+        opts: ["语法不同但效果相同", "@container 响应元素自身容器宽度，@media 响应浏览器视口宽度", "@container 只支持 min-width", "@media 性能更好"],
+        a: 1,
+        exp: "@media 根据视口宽度适配，组件在不同位置表现一致；@container 根据组件父容器宽度适配，同一组件在侧栏和主区可呈现不同布局。2023 年全浏览器支持，是响应式设计的范式转变。",
       },
     ];
 
