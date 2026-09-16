@@ -66,6 +66,28 @@
       el.innerHTML = el.dataset.html;
     });
 
+    // 语言切换
+    const langBtn = document.getElementById("langToggle");
+    const savedLang = localStorage.getItem("site-lang") || "zh";
+    document.body.classList.add("lang-" + savedLang);
+    langBtn.textContent = savedLang === "zh" ? "中 / EN" : "EN / 中";
+    langBtn.addEventListener("click", () => {
+      const cur = document.body.classList.contains("lang-en") ? "en" : "zh";
+      const next = cur === "zh" ? "en" : "zh";
+      document.body.classList.remove("lang-" + cur);
+      document.body.classList.add("lang-" + next);
+      localStorage.setItem("site-lang", next);
+      langBtn.textContent = next === "zh" ? "中 / EN" : "EN / 中";
+      // re-render hero title for current language
+      document.querySelectorAll("[data-html]").forEach((el) => {
+        const key = next === "en" && el.dataset.htmlEn ? "data-html-en" : "data-html";
+        const val = next === "en" && el.dataset.htmlEn ? el.dataset.htmlEn : el.dataset.html;
+        if (val) el.innerHTML = val;
+      });
+      // re-render quiz if exists
+      if (window.__quizRender) window.__quizRender();
+    });
+
     // Reveal 动画
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -400,34 +422,64 @@
   function initQuiz() {
     const QUIZ = [
       {
-        q: "相邻两个块级元素的 margin-top 和 margin-bottom 发生合并时，实际间距取值为？",
-        opts: ["两者之和", "较大值", "较小值", "平均值"],
+        q: { zh: "相邻两个块级元素的 margin-top 和 margin-bottom 发生合并时，实际间距取值为？", en: "When adjacent block elements' margin-top and margin-bottom collapse, the actual gap is?" },
+        opts: {
+          zh: ["两者之和", "较大值", "较小值", "平均值"],
+          en: ["Sum of both", "The larger value", "The smaller value", "Average"],
+        },
         a: 1,
-        exp: "margin 合并规则：相邻兄弟元素的上下 margin 取较大值（非相加）。这是 CSS 规范行为，创建 BFC（如 display: flow-root）可消除合并。",
+        exp: {
+          zh: "margin 合并规则：相邻兄弟元素的上下 margin 取较大值（非相加）。这是 CSS 规范行为，创建 BFC（如 display: flow-root）可消除合并。",
+          en: "Margin collapse rule: adjacent siblings' vertical margins take the larger value (not summed). This is CSS spec behavior. Creating a BFC (e.g., display: flow-root) prevents collapse.",
+        },
       },
       {
-        q: "一个 absolute 定位的元素，其包含块是？",
-        opts: ["浏览器视口", "最近的非 static 定位祖先", "body 元素", "html 根元素"],
+        q: { zh: "一个 absolute 定位的元素，其包含块是？", en: "For an absolutely positioned element, its containing block is?" },
+        opts: {
+          zh: ["浏览器视口", "最近的非 static 定位祖先", "body 元素", "html 根元素"],
+          en: ["The browser viewport", "The nearest non-static positioned ancestor", "The body element", "The html root element"],
+        },
         a: 1,
-        exp: "absolute 的包含块是最近的 position 非 static 祖先。如果所有祖先都是 static，则回退到初始包含块（视口大小的矩形）。fixed 的包含块是视口，除非祖先有 transform/filter。",
+        exp: {
+          zh: "absolute 的包含块是最近的 position 非 static 祖先。如果所有祖先都是 static，则回退到初始包含块。fixed 的包含块是视口，除非祖先有 transform/filter。",
+          en: "absolute's containing block is the nearest ancestor with position != static. If all ancestors are static, it falls back to the initial containing block. fixed's containing block is the viewport, unless an ancestor has transform/filter.",
+        },
       },
       {
-        q: "Flex 子项内容过大导致溢出容器，最常见的修复方案是？",
-        opts: ["给子项设 overflow: scroll", "给子项设 min-width: 0", "给容器设 overflow: hidden", "给子项设 width: 100%"],
+        q: { zh: "Flex 子项内容过大导致溢出容器，最常见的修复方案是？", en: "A Flex item's content is too large and overflows the container. The most common fix is?" },
+        opts: {
+          zh: ["给子项设 overflow: scroll", "给子项设 min-width: 0", "给容器设 overflow: hidden", "给子项设 width: 100%"],
+          en: ["Set overflow: scroll on the item", "Set min-width: 0 on the item", "Set overflow: hidden on the container", "Set width: 100% on the item"],
+        },
         a: 1,
-        exp: "Flex 子项默认 min-width: auto，不允许收缩到内容以下。设 min-width: 0 解除限制后，flex-shrink 才能生效。这是 Flex 布局中最常见的溢出 bug 根源。",
+        exp: {
+          zh: "Flex 子项默认 min-width: auto，不允许收缩到内容以下。设 min-width: 0 解除限制后，flex-shrink 才能生效。这是最频繁的 Flex 溢出 bug。",
+          en: "Flex items default to min-width: auto, preventing shrinkage below content size. Setting min-width: 0 removes this limit so flex-shrink works. This is the most common Flex overflow bug.",
+        },
       },
       {
-        q: "repeat(auto-fit, minmax(200px, 1fr)) 实现了什么效果？",
-        opts: ["固定 3 列等宽布局", "根据容器宽度自动决定列数，无需媒体查询", "创建 200px 固定列", "无限列自动填充"],
+        q: { zh: "repeat(auto-fit, minmax(200px, 1fr)) 实现了什么效果？", en: "What does repeat(auto-fit, minmax(200px, 1fr)) achieve?" },
+        opts: {
+          zh: ["固定 3 列等宽布局", "根据容器宽度自动决定列数，无需媒体查询", "创建 200px 固定列", "无限列自动填充"],
+          en: ["Fixed 3-column equal-width layout", "Auto-determines column count based on container width, no media queries needed", "Creates 200px fixed columns", "Unlimited auto-filling columns"],
+        },
         a: 1,
-        exp: "auto-fit 让网格根据容器可用空间自动决定列数：容器够宽就多列，不够宽就少列，每列最小 200px、最大等分。这是 Grid 独有的无媒体查询响应式方案。",
+        exp: {
+          zh: "auto-fit 让网格根据容器可用空间自动决定列数：够宽就多列，不够宽就少列，每列最小 200px、最大等分。Grid 独有的无媒体查询响应式方案。",
+          en: "auto-fit lets the grid auto-determine column count from available space: more columns when wide, fewer when narrow, each min 200px max equal share. Grid-exclusive no-media-query responsive solution.",
+        },
       },
       {
-        q: "容器查询 @container 与媒体查询 @media 的根本区别是？",
-        opts: ["语法不同但效果相同", "@container 响应元素自身容器宽度，@media 响应浏览器视口宽度", "@container 只支持 min-width", "@media 性能更好"],
+        q: { zh: "容器查询 @container 与媒体查询 @media 的根本区别是？", en: "What is the fundamental difference between @container and @media?" },
+        opts: {
+          zh: ["语法不同但效果相同", "@container 响应元素自身容器宽度，@media 响应浏览器视口宽度", "@container 只支持 min-width", "@media 性能更好"],
+          en: ["Different syntax but same effect", "@container responds to the element's own container width; @media responds to the viewport width", "@container only supports min-width", "@media has better performance"],
+        },
         a: 1,
-        exp: "@media 根据视口宽度适配，组件在不同位置表现一致；@container 根据组件父容器宽度适配，同一组件在侧栏和主区可呈现不同布局。2023 年全浏览器支持，是响应式设计的范式转变。",
+        exp: {
+          zh: "@media 根据视口宽度适配，组件在不同位置表现一致；@container 根据组件父容器宽度适配，同一组件在侧栏和主区可呈现不同布局。2023 年全浏览器支持。",
+          en: "@media adapts to viewport width — components look the same everywhere; @container adapts to the parent container width — the same component can render differently in sidebar vs. main area. Full browser support in 2023.",
+        },
       },
     ];
 
@@ -438,16 +490,22 @@
     const nextBtn = document.getElementById("quizNext");
     const restartBtn = document.getElementById("quizRestart");
 
+    function lang() {
+      return document.body.classList.contains("lang-en") ? "en" : "zh";
+    }
+
     function render() {
       const q = QUIZ[idx];
+      const L = lang();
       answered = false;
-      progress.textContent = `第 ${idx + 1} / ${QUIZ.length} 题`;
+      progress.textContent = L === "zh" ? `第 ${idx + 1} / ${QUIZ.length} 题` : `Question ${idx + 1} / ${QUIZ.length}`;
       nextBtn.style.display = "none";
+      restartBtn.style.display = "none";
 
       body.innerHTML = `
-        <h3 class="quiz-q">${q.q}</h3>
+        <h3 class="quiz-q">${q.q[L]}</h3>
         <div class="quiz-opts">
-          ${q.opts.map((o, i) => `<button class="quiz-opt" data-i="${i}">${String.fromCharCode(65 + i)}. ${o}</button>`).join("")}
+          ${q.opts[L].map((o, i) => `<button class="quiz-opt" data-i="${i}">${String.fromCharCode(65 + i)}. ${o}</button>`).join("")}
         </div>
         <div class="quiz-exp" id="quizExp" style="display:none"></div>`;
 
@@ -467,17 +525,19 @@
 
           const exp = document.getElementById("quizExp");
           exp.style.display = "block";
-          exp.innerHTML = `<div class="quiz-exp-icon">${ok ? "✅" : "❌"}</div><div class="quiz-exp-text">${q.exp}</div>`;
+          exp.innerHTML = `<div class="quiz-exp-icon">${ok ? "✅" : "❌"}</div><div class="quiz-exp-text">${q.exp[L]}</div>`;
 
           if (idx < QUIZ.length - 1) {
             nextBtn.style.display = "inline-block";
           } else {
             restartBtn.style.display = "inline-block";
-            progress.textContent = `完成！得分 ${score} / ${QUIZ.length}`;
+            progress.textContent = L === "zh" ? `完成！得分 ${score} / ${QUIZ.length}` : `Done! Score ${score} / ${QUIZ.length}`;
           }
         });
       });
     }
+
+    window.__quizRender = render;
 
     nextBtn.addEventListener("click", () => { idx++; render(); });
     restartBtn.addEventListener("click", () => { idx = 0; score = 0; scoreEl.textContent = 0; restartBtn.style.display = "none"; render(); });

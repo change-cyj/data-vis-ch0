@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 6 章 · 页面布局 — 可视化导论</title>
+  <title>第 6 章 · 页面布局 — 可视化导论 / Ch.6 Page Layout — Visualization Introduction</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260916c">
+  <link rel="stylesheet" href="style.css?v=20260916d">
 </head>
 <body>
 
@@ -17,42 +17,43 @@
   <!-- 顶部导航 -->
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
-      <a href="#hero" class="brand">CH.06 / 页面布局</a>
+      <a href="#hero" class="brand">CH.06 / <span class="zh">页面布局</span><span class="en">Page Layout</span></a>
       <nav class="nav-links" id="navLinks">
-        <a href="#sec-6-1" data-sec="6-1">6.1 盒模型</a>
-        <a href="#sec-6-2" data-sec="6-2">6.2 定位</a>
-        <a href="#sec-6-3" data-sec="6-3">6.3 Flex</a>
-        <a href="#sec-6-4" data-sec="6-4">6.4 Grid</a>
-        <a href="#sec-6-5" data-sec="6-5">6.5 响应式</a>
+        <a href="#sec-6-1" data-sec="6-1"><span class="zh">6.1 盒模型</span><span class="en">6.1 Box Model</span></a>
+        <a href="#sec-6-2" data-sec="6-2"><span class="zh">6.2 定位</span><span class="en">6.2 Positioning</span></a>
+        <a href="#sec-6-3" data-sec="6-3"><span class="zh">6.3 Flex</span><span class="en">6.3 Flex</span></a>
+        <a href="#sec-6-4" data-sec="6-4"><span class="zh">6.4 Grid</span><span class="en">6.4 Grid</span></a>
+        <a href="#sec-6-5" data-sec="6-5"><span class="zh">6.5 响应式</span><span class="en">6.5 Responsive</span></a>
       </nav>
+      <button class="lang-toggle" id="langToggle">中 / EN</button>
     </div>
   </header>
 
   <!-- 侧边导航点 -->
   <aside class="side-dots" id="sideDots">
-    <a href="#hero" data-sec="hero" class="active"><span>引言</span></a>
+    <a href="#hero" data-sec="hero" class="active"><span class="zh">引言</span><span class="en">Intro</span></a>
     <a href="#sec-6-1" data-sec="6-1"><span>6.1</span></a>
     <a href="#sec-6-2" data-sec="6-2"><span>6.2</span></a>
     <a href="#sec-6-3" data-sec="6-3"><span>6.3</span></a>
     <a href="#sec-6-4" data-sec="6-4"><span>6.4</span></a>
     <a href="#sec-6-5" data-sec="6-5"><span>6.5</span></a>
-    <a href="#quiz" data-sec="quiz"><span>闯关</span></a>
+    <a href="#quiz" data-sec="quiz"><span class="zh">闯关</span><span class="en">Quiz</span></a>
   </aside>
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero" data-sec="hero">
     <div class="container hero-inner">
-      <div class="hero-eyebrow">可视化导论 · 第 6 章</div>
-      <h1 class="hero-title" data-html="页面布局<span class="hero-num">06</span>"></h1>
-      <p class="hero-sub">盒模型 · 定位机制 · Flex 弹性布局 · Grid 网格布局 · 响应式设计</p>
+      <div class="hero-eyebrow"><span class="zh">可视化导论 · 第 6 章</span><span class="en">Visualization Intro · Ch.6</span></div>
+      <h1 class="hero-title" data-html="页面布局<span class="hero-num">06</span>" data-html-en="Page Layout<span class="hero-num">06</span>"></h1>
+      <p class="hero-sub"><span class="zh">盒模型 · 定位机制 · Flex 弹性布局 · Grid 网格布局 · 响应式设计</span><span class="en">Box Model · Positioning · Flexbox · CSS Grid · Responsive Design</span></p>
       <div class="hero-stats" id="heroStats">
-        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">小节</span></div>
-        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label">核心布局体系</span></div>
-        <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label">交互演示</span></div>
-        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">闯关题</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label"><span class="zh">小节</span><span class="en">Sections</span></span></div>
+        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label"><span class="zh">核心布局体系</span><span class="en">Layout Systems</span></span></div>
+        <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label"><span class="zh">交互演示</span><span class="en">Demos</span></span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label"><span class="zh">闯关题</span><span class="en">Quiz</span></span></div>
       </div>
-      <div class="hero-meta"><span>从 W3C 规范到工程实践，系统掌握 CSS 视觉格式化模型</span></div>
-      <a href="#sec-6-1" class="hero-scroll">向下滚动 ↓</a>
+      <div class="hero-meta"><span class="zh">从 W3C 规范到工程实践，系统掌握 CSS 视觉格式化模型</span><span class="en">From W3C specs to engineering practice — mastering the CSS visual formatting model</span></div>
+      <a href="#sec-6-1" class="hero-scroll"><span class="zh">向下滚动 ↓</span><span class="en">Scroll down ↓</span></a>
     </div>
   </section>
 
@@ -61,59 +62,50 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">6.1</div>
-        <h2>盒模型</h2>
-        <p class="chap-lead">每个 HTML 元素都是一个矩形盒子——从 W3C 规范到 IE 怪异模式，理解 content / padding / border / margin 四层结构及其在布局中的连锁效应。</p>
+        <h2><span class="zh">盒模型</span><span class="en">Box Model</span></h2>
+        <p class="chap-lead"><span class="zh">每个 HTML 元素都是一个矩形盒子——从 W3C 规范到 IE 怪异模式，理解 content / padding / border / margin 四层结构及其在布局中的连锁效应。</span><span class="en">Every HTML element is a rectangular box — from W3C specs to IE quirks mode, understanding the four-layer structure of content / padding / border / margin and their cascading effects in layout.</span></p>
       </div>
 
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label">讲解</div>
+          <div class="part-label"><span class="zh">讲解</span><span class="en">Explanation</span></div>
           <div class="part-explain">
-            <p>CSS 视觉格式化模型规定：每个元素生成一个或多个矩形盒子，由内到外依次为 <b>content（内容区）→ padding（内边距）→ border（边框）→ margin（外边距）</b>。padding 和 border 是"内层"——背景会覆盖到 border 外缘；margin 是"外层"——始终透明，不影响元素自身背景。</p>
-            <p><b>W3C 标准盒模型</b>（content-box）：<code>width</code> 仅设置 content 区域。设 padding 和 border 后，元素实际渲染宽度 = width + padding×2 + border×2。这在嵌套布局中极易导致溢出——例如父元素 width:300px，子元素 width:100% + padding:20px，实际渲染宽度为 340px，直接撑破父容器。</p>
-            <p><b>IE 怪异盒模型</b>（border-box）：<code>width</code> 包含 content + padding + border。这意味着无论 padding 和 border 如何变化，元素的外围尺寸恒定不变。2008 年 IE8 率先引入 <code>box-sizing</code> 属性，允许开发者显式选择盒模型。2014 年 Paul Irish 提出的<b>全局 border-box 重置</b>成为业界标配：<code>*, *::before, *::after { box-sizing: border-box }</code>——注意 <code>::before</code> 和 <code>::after</code> 伪元素默认不继承 box-sizing，必须显式声明。</p>
-            <p><b>margin 合并三规则</b>：① <b>相邻兄弟</b>——两个块级元素的上下 margin 取较大值（非相加）；② <b>父子穿透</b>——父元素无 padding-top/border-top/inline-block/flow-root 时，子元素的 margin-top 会"穿透"到父元素外部；③ <b>空元素自合并</b>——空块级元素自身的 margin-top 和 margin-bottom 合并为较大值。合并只在<b>块级格式化上下文（BFC）内</b>发生。</p>
-            <p><b>BFC（Block Formatting Context）</b>是一个独立的渲染区域，内部元素不受外部影响。创建 BFC 的方式：<code>display: flow-root</code>（语义最清晰，2017 年后推荐）、<code>overflow: hidden/auto/scroll</code>、<code>display: flex/inline-block/grid</code>、<code>float</code> 非 none。BFC 的三大效果：阻止 margin 合并、阻止浮动塌陷、阻止文字环绕浮动元素。</p>
-            <p><b>负 margin</b>是合法的 CSS 技巧：负的 margin-right 可以让元素宽度"撑出"父容器；负的 margin-top 可以让后元素与前元素重叠。但负 margin 不改变元素尺寸，只改变与其他元素的<b>间距计算</b>。</p>
+            <p><span class="zh">CSS 视觉格式化模型规定：每个元素生成一个或多个矩形盒子，由内到外依次为 <b>content（内容区）→ padding（内边距）→ border（边框）→ margin（外边距）</b>。padding 和 border 是"内层"——背景会覆盖到 border 外缘；margin 是"外层"——始终透明，不影响元素自身背景。</span><span class="en">The CSS visual formatting model specifies that each element generates one or more rectangular boxes, from inside out: <b>content → padding → border → margin</b>. Padding and border are "inner layers" — background extends to the border's outer edge; margin is the "outer layer" — always transparent, doesn't affect the element's own background.</span></p>
+            <p><span class="zh"><b>W3C 标准盒模型</b>（content-box）：<code>width</code> 仅设置 content 区域。设 padding 和 border 后，元素实际渲染宽度 = width + padding×2 + border×2。这在嵌套布局中极易导致溢出。</span><span class="en"><b>W3C standard box model</b> (content-box): <code>width</code> only sets the content area. After adding padding and border, the actual rendered width = width + padding×2 + border×2, easily causing overflow in nested layouts.</span></p>
+            <p><span class="zh"><b>IE 怪异盒模型</b>（border-box）：<code>width</code> 包含 content + padding + border。2008 年 IE8 引入 <code>box-sizing</code> 属性。Paul Irish 2014 年提出的<b>全局 border-box 重置</b>成为业界标配。</span><span class="en"><b>IE quirks box model</b> (border-box): <code>width</code> includes content + padding + border. IE8 introduced <code>box-sizing</code> in 2008. Paul Irish's 2014 <b>global border-box reset</b> became the industry standard.</span></p>
+            <p><span class="zh"><b>margin 合并三规则</b>：① 相邻兄弟元素的上下 margin 取较大值（非相加）；② 父元素无 padding/border 时，子元素的 margin-top 会穿透父元素；③ 空元素自身的 margin-top 和 margin-bottom 合并。合并只在 BFC 内发生。</span><span class="en"><b>Margin collapse three rules</b>: ① Adjacent siblings' vertical margins take the larger value (not summed); ② Without padding/border on parent, child's margin-top penetrates outside; ③ Empty element's own margin-top and bottom merge. Collapses only happen within BFC.</span></p>
+            <p><span class="zh"><b>BFC（块级格式化上下文）</b>是独立渲染区域。创建方式：<code>display: flow-root</code>（推荐）、<code>overflow: hidden</code>、<code>display: flex/grid</code>。BFC 阻止 margin 合并、阻止浮动塌陷。</span><span class="en"><b>BFC (Block Formatting Context)</b> is an isolated rendering area. Created by: <code>display: flow-root</code> (recommended), <code>overflow: hidden</code>, <code>display: flex/grid</code>. BFC prevents margin collapse and float collapse.</span></p>
           </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label">关键代码</div>
-<pre class="code-block"><code><span class="c">/* ── 全局盒模型重置（Paul Irish 2014）── */</span>
+          <div class="part-label"><span class="zh">关键代码</span><span class="en">Key Code</span></div>
+<pre class="code-block"><code><span class="c">/* Global box-sizing reset (Paul Irish, 2014) */</span>
 <span class="k">html</span> { <span class="p">box-sizing</span>: border-box; }
 <span class="k">*</span>, <span class="k">*::before</span>, <span class="k">*::after</span> {
-  <span class="p">box-sizing</span>: inherit;  <span class="c">/* 继承 html 的 border-box */</span>
+  <span class="p">box-sizing</span>: inherit;
 }
 
-<span class="c">/* ── 盒模型尺寸计算（border-box 模式）── */</span>
+<span class="c">/* Box model size calculation (border-box) */</span>
 <span class="k">.card</span> {
-  <span class="p">width</span>: <span class="n">320</span>px;              <span class="c">/* 含 padding+border */</span>
+  <span class="p">width</span>: <span class="n">320</span>px;        <span class="c">/* incl. padding+border */</span>
   <span class="p">padding</span>: <span class="n">24</span>px;
   <span class="p">border</span>: <span class="n">2</span>px solid #d4a04c;
-  <span class="p">margin</span>: <span class="n">16</span>px;          <span class="c">/* margin 不计入 width */</span>
-  <span class="c">/* content 实际宽度 = 320-24×2-2×2 = 268px */</span>
+  <span class="p">margin</span>: <span class="n">16</span>px;      <span class="c">/* not in width */</span>
 }
 
-<span class="c">/* ── 消除 margin 合并——创建 BFC ── */</span>
+<span class="c">/* Prevent margin collapse — create BFC */</span>
 <span class="k">.parent</span> {
-  <span class="p">display</span>: flow-root;     <span class="c">/* 首选: 无副作用 */</span>
-  <span class="c">/* 备选: overflow:hidden / display:flex / float:left */</span>
-}
-
-<span class="c">/* ── 负 margin 实战：撑满容器 + 重叠效果 ── */</span>
-<span class="k">.full-bleed</span> {
-  <span class="p">margin-left</span>: calc(-<span class="n">50</span>vw + <span class="n">50</span>%); <span class="c">/* 全宽 banner */</span>
-  <span class="p">margin-right</span>: calc(-<span class="n">50</span>vw + <span class="n">50</span>%);
+  <span class="p">display</span>: flow-root;
 }</code></pre>
         </div>
       </div>
 
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label">演示</div>
-          <h3>盒模型可视化</h3>
+          <div class="part-label"><span class="zh">演示</span><span class="en">Demo</span></div>
+          <h3><span class="zh">盒模型可视化</span><span class="en">Box Model Visualizer</span></h3>
         </div>
-        <p class="demo-desc">拖动滑块调整 padding / border / margin，切换 box-sizing 模式，实时观察盒模型各层尺寸与元素总占位的变化。</p>
+        <p class="demo-desc"><span class="zh">拖动滑块调整 padding / border / margin，切换 box-sizing 模式，实时观察盒模型各层尺寸变化。</span><span class="en">Drag sliders to adjust padding / border / margin, toggle box-sizing mode, and observe real-time changes.</span></p>
 
         <div class="bm-controls">
           <label>padding: <input type="range" id="bmPadding" min="0" max="40" value="20"><span id="bmPaddingVal">20px</span></label>
@@ -135,58 +127,48 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">6.2</div>
-        <h2>定位机制</h2>
-        <p class="chap-lead">static / relative / absolute / fixed / sticky 五种定位值，决定元素如何脱离或在文档流中排列——以及由此衍生的包含块、层叠上下文与 z-index 管理问题。</p>
+        <h2><span class="zh">定位机制</span><span class="en">Positioning</span></h2>
+        <p class="chap-lead"><span class="zh">static / relative / absolute / fixed / sticky 五种定位值，决定元素如何脱离或在文档流中排列——以及由此衍生的包含块、层叠上下文与 z-index 管理问题。</span><span class="en">Five position values — static / relative / absolute / fixed / sticky — determine how elements flow or break from the document flow, along with containing blocks, stacking contexts, and z-index management.</span></p>
       </div>
 
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label">讲解</div>
+          <div class="part-label"><span class="zh">讲解</span><span class="en">Explanation</span></div>
           <div class="part-explain">
-            <p><b>定位的核心是"相对于谁"</b>。static（默认）按文档流排列，<code>top/left/right/bottom/z-index</code> 全部无效；relative 相对<b>自身原位置</b>偏移，<b>原位置仍保留</b>（周围元素不会移动）；absolute 相对<b>最近的非 static 祖先</b>定位，脱离文档流（周围元素填补其位置）；fixed 相对<b>浏览器视口</b>定位，页面滚动时位置不变。</p>
-            <p><b>sticky 是条件混合体</b>：在滚动未到达阈值前表现为 relative（占位保留），到达 <code>top: 20px</code> 阈值后切换为 fixed 行为（钉住位置）。但 sticky 有一个常被忽略的限制：sticky 元素的<b>最近滚动祖先</b>必须比 sticky 元素更高，否则 sticky 效果不会触发——如果父容器 <code>overflow: hidden</code> 且高度不足以滚动，sticky 等同于 static。</p>
-            <p><b>包含块（Containing Block）</b>是定位的参照系，不同定位值的包含块不同：absolute 的包含块是最近的 position 非 static 祖先的 <b>padding-box</b>（注意不是 content-box）；fixed 的包含块通常是视口。但有一个<b>关键的规范变更</b>（CSS Transforms spec）：如果祖先元素有 <code>transform</code>、<code>perspective</code>、<code>filter</code>、<code>will-change</code> 等属性，fixed 的包含块会变成该祖先而非视口——这会导致 fixed 元素不再"固定"，是 2015 年后最常见的定位"坑"。</p>
-            <p><b>层叠上下文（Stacking Context）</b>是 z-index 生效的前提。CSS 2.1 定义了 7 层堆叠顺序；CSS3 扩展了创建条件：<code>position</code> 非 static + z-index 非 auto、<code>opacity</code> < 1、<code>transform</code> 非 none、<code>filter</code> 非 none、<code>isolation: isolate</code>、<code>mix-blend-mode</code> 非 normal 等。层叠上下文的<b>隔离性</b>意味着：子元素的 z-index 无论多大，都不会穿透到外部上下文之上。这就是模态框（z-index: 9999）被父容器（有 transform）遮挡的根因。</p>
-            <p><b>z-index 管理策略</b>：不要用 <code>z-index: 99999</code> 这种魔法数字。推荐用<b>分层命名法</b>：定义 CSS 自定义变量 <code>--z-base: 1</code>、<code>--z-dropdown: 100</code>、<code>--z-modal: 200</code>、<code>--z-toast: 300</code>，每个层级间隔 100 留扩展空间。这样团队协作时 z-index 层级清晰可控。</p>
+            <p><span class="zh"><b>定位的核心是"相对于谁"</b>。static 按文档流排列；relative 相对<b>自身原位置</b>偏移，原位置保留；absolute 相对<b>最近的非 static 祖先</b>定位，脱离文档流；fixed 相对<b>浏览器视口</b>定位；sticky 是 relative + fixed 的条件混合体。</span><span class="en"><b>Positioning is about "relative to what"</b>. Static: normal flow. Relative: offsets from <b>original position</b>, space preserved. Absolute: relative to <b>nearest non-static ancestor</b>, out of flow. Fixed: relative to <b>viewport</b>. Sticky: conditional mix of relative + fixed.</span></p>
+            <p><span class="zh"><b>包含块（Containing Block）</b>是定位参照系。absolute 的包含块是最近 position 非 static 祖先的 padding-box；fixed 通常相对视口。但<b>关键规范变更</b>：祖先有 <code>transform</code>/<code>filter</code> 时，fixed 的包含块变为该祖先——这导致 fixed 不再"固定"。</span><span class="en"><b>Containing Block</b> is the positioning reference. Absolute's containing block is the nearest non-static ancestor's padding-box; fixed is typically the viewport. But a <b>key spec change</b>: if an ancestor has <code>transform</code>/<code>filter</code>, fixed's containing block becomes that ancestor — breaking "fixed" behavior.</span></p>
+            <p><span class="zh"><b>层叠上下文（Stacking Context）</b>是 z-index 生效的前提。创建条件：position 非 static + z-index 非 auto、opacity < 1、transform 非 none 等。子元素的 z-index <b>不会穿透到外部上下文</b>——这是模态框被遮挡的根因。</span><span class="en"><b>Stacking Context</b> is prerequisite for z-index. Created by: non-static position + z-index, opacity < 1, transform, etc. Child z-index <b>cannot penetrate outside its context</b> — the root cause of modals being obscured.</span></p>
+            <p><span class="zh"><b>z-index 管理策略</b>：推荐用 CSS 变量分层命名：<code>--z-base: 1</code>、<code>--z-modal: 200</code>、<code>--z-toast: 300</code>，避免魔法数字。</span><span class="en"><b>z-index management</b>: Use CSS custom property layers: <code>--z-base: 1</code>, <code>--z-modal: 200</code>, <code>--z-toast: 300</code>, avoiding magic numbers.</span></p>
           </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label">关键代码</div>
-<pre class="code-block"><code><span class="c">/* ── 五种定位值——行为对比 ── */</span>
-<span class="k">.flow</span>     { <span class="p">position</span>: static; }          <span class="c">/* 文档流,top 无效 */</span>
-<span class="k">.shift</span>    { <span class="p">position</span>: relative; <span class="p">top</span>: -<span class="n">8</span>px; }  <span class="c">/* 偏移,原位保留 */</span>
+          <div class="part-label"><span class="zh">关键代码</span><span class="en">Key Code</span></div>
+<pre class="code-block"><code><span class="c">/* Five position values */</span>
+<span class="k">.flow</span>     { <span class="p">position</span>: static; }
+<span class="k">.shift</span>    { <span class="p">position</span>: relative; <span class="p">top</span>: -<span class="n">8</span>px; }
 <span class="k">.badge</span>    { <span class="p">position</span>: absolute; <span class="p">top</span>: <span class="n">0</span>; <span class="p">right</span>: <span class="n">0</span>; }
-<span class="k">.navbar</span>   { <span class="p">position</span>: fixed; <span class="p">top</span>: <span class="n">0</span>; <span class="p">width</span>: <span class="n">100</span>%; }
+<span class="k">.navbar</span>   { <span class="p">position</span>: fixed; <span class="p">top</span>: <span class="n">0</span>; }
 <span class="k">.toc</span>      { <span class="p">position</span>: sticky; <span class="p">top</span>: <span class="n">20</span>px; }
 
-<span class="c">/* ── z-index 分层管理——CSS 变量体系 ── */</span>
+<span class="c">/* z-index layer system via CSS vars */</span>
 <span class="k">:root</span> {
-  --z-base: <span class="n">1</span>;
   --z-dropdown: <span class="n">100</span>;
-  --z-sticky: <span class="n">150</span>;
   --z-modal: <span class="n">200</span>;
-  --z-modal-overlay: <span class="n">210</span>;
   --z-toast: <span class="n">300</span>;
 }
-<span class="k">.dropdown</span>  { <span class="p">position</span>: absolute; <span class="p">z-index</span>: var(--z-dropdown); }
-<span class="k">.modal</span>     { <span class="p">position</span>: fixed; <span class="p">z-index</span>: var(--z-modal); }
-<span class="k">.toast</span>     { <span class="p">position</span>: fixed; <span class="p">z-index</span>: var(--z-toast); }
+<span class="k">.modal</span> { <span class="p">z-index</span>: var(--z-modal); }
 
-<span class="c">/* ── transform 改变 fixed 包含块（坑！）── */</span>
-<span class="k">.has-transform</span> {
-  <span class="p">transform</span>: translateZ(<span class="n">0</span>);
-  <span class="c">/* 子元素的 fixed 不再相对视口, */</span>
-  <span class="c">/* 而是相对此元素定位! */</span>
-}</code></pre>
+<span class="c">/* transform changes fixed's containing block! */</span>
+<span class="k">.parent</span> { <span class="p">transform</span>: translateZ(<span class="n">0</span>); }</code></pre>
         </div>
       </div>
 
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label">演示</div>
-          <h3>定位实验台</h3>
+          <div class="part-label"><span class="zh">演示</span><span class="en">Demo</span></div>
+          <h3><span class="zh">定位实验台</span><span class="en">Positioning Lab</span></h3>
         </div>
-        <p class="demo-desc">点击按钮切换蓝方块的定位方式，观察它在容器中的位置变化，以及相邻元素的反应。</p>
+        <p class="demo-desc"><span class="zh">点击按钮切换蓝方块的定位方式，观察它在容器中的位置变化。</span><span class="en">Click buttons to switch the blue box's position value and observe layout changes.</span></p>
 
         <div class="pos-buttons">
           <button class="pos-btn active" data-pos="static">static</button>
@@ -213,61 +195,52 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">6.3</div>
-        <h2>Flex 弹性布局</h2>
-        <p class="chap-lead">一维布局的终极方案。Flexbox 以主轴/交叉轴双轴模型取代了 float+clearfix 时代，理解 flex 简写分解与 min-width:auto 陷阱是掌握弹性布局的关键。</p>
+        <h2><span class="zh">Flex 弹性布局</span><span class="en">Flexbox</span></h2>
+        <p class="chap-lead"><span class="zh">一维布局的终极方案。Flexbox 以主轴/交叉轴双轴模型取代了 float+clearfix 时代，理解 flex 简写分解与 min-width:auto 陷阱是关键。</span><span class="en">The ultimate one-dimensional layout solution. Flexbox replaces the float+clearfix era with a main/cross-axis model. Understanding flex shorthand and the min-width:auto trap is key.</span></p>
       </div>
 
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label">讲解</div>
+          <div class="part-label"><span class="zh">讲解</span><span class="en">Explanation</span></div>
           <div class="part-explain">
-            <p>2009 年 Flexbox 首次提案，经历了三个语法版本：2009 语法（<code>display: box</code>，旧 WebKit/Firefox）、2011 语法（<code>display: flexbox</code>，微软草案）、2016 最终版（<code>display: flex</code>，W3C CR）。现代浏览器统一支持最终版。Flex 布局以<b>主轴/交叉轴双轴模型</b>为核心：<code>flex-direction</code> 决定主轴方向（row → 水平为主轴，column → 垂直为主轴），<code>justify-content</code> 管主轴对齐，<code>align-items</code> 管交叉轴对齐。</p>
-            <p><b>flex 简写分解</b>：<code>flex: 1 0 200px</code> 三个值依次是——<b>flex-grow</b>（剩余空间分配比例，0 = 不伸不长）、<b>flex-shrink</b>（空间不足时的收缩比例，1 = 等比收缩）、<b>flex-basis</b>（初始大小基准，优先于 width 属性）。常用简写：<code>flex: 1</code> = <code>1 1 0%</code>（等比伸缩填充）、<code>flex: auto</code> = <code>1 1 auto</code>（以内容大小为基准伸缩）、<code>flex: none</code> = <code>0 0 auto</code>（固定不伸缩）。</p>
-            <p><b>flex-grow 的分配数学</b>：容器剩余空间 = 容器宽度 - 所有子项 flex-basis 之和。每个子项分到的额外空间 = 剩余空间 × (自身 flex-grow / 所有子项 flex-grow 之和)。例如三个子项 grow 分别为 1、2、1，剩余空间 200px，分配为 50px、100px、50px。</p>
-            <p><b>min-width: auto 陷阱</b>：Flex 子项默认 <code>min-width: auto</code>，意味着"不允许收缩到内容最小宽度以下"。当子项内容（如长 URL、长表格）超出容器时，<code>flex-shrink</code> 无法生效——元素溢出容器。解决方法：<code>min-width: 0</code> 或 <code>overflow: hidden</code>。这是 Flex 布局中<b>最频繁出现的溢出 bug</b>，几乎每个 Flex 项目都会遇到。</p>
-            <p><b>gap 属性</b>（2021 年全浏览器支持）：统一了 Flex 和 Grid 的间距语法，取代了 <code>margin</code> + <code>:last-child</code> 的 hack 方案。在此之前，Flex 只能用 <code>margin-right</code> + <code>.item:last-child { margin-right: 0 }</code> 实现间距。</p>
-            <p><b>align-self</b> 覆盖父容器 align-items 对单个子项的对齐方式，常用于让某个按钮在行内单独居顶或居底。<b>flex-wrap</b> 控制是否换行，换行后 <code>align-content</code> 控制多行间的间距——注意它只在 <code>flex-wrap: wrap</code> 时才有意义，单行布局下无效。</p>
+            <p><span class="zh">2009 年 Flexbox 首次提案，经历三个语法版本后于 2016 年定版。Flex 布局以<b>主轴/交叉轴双轴模型</b>为核心：<code>flex-direction</code> 决定主轴方向，<code>justify-content</code> 管主轴对齐，<code>align-items</code> 管交叉轴对齐。</span><span class="en">Flexbox was proposed in 2009, went through three syntax versions, and finalized in 2016. Its core is the <b>main/cross-axis model</b>: <code>flex-direction</code> sets main axis, <code>justify-content</code> controls main-axis alignment, <code>align-items</code> controls cross-axis alignment.</span></p>
+            <p><span class="zh"><b>flex 简写</b>：<code>flex: 1 0 200px</code> = <b>flex-grow</b>（剩余空间分配比例）、<b>flex-shrink</b>（收缩比例）、<b>flex-basis</b>（初始大小，优先于 width）。<code>flex: 1</code> = <code>1 1 0%</code>，<code>flex: none</code> = <code>0 0 auto</code>。</span><span class="en"><b>flex shorthand</b>: <code>flex: 1 0 200px</code> = <b>flex-grow</b> (remaining space ratio), <b>flex-shrink</b> (shrink ratio), <b>flex-basis</b> (initial size, overrides width). <code>flex: 1</code> = <code>1 1 0%</code>, <code>flex: none</code> = <code>0 0 auto</code>.</span></p>
+            <p><span class="zh"><b>min-width: auto 陷阱</b>：Flex 子项默认不允许收缩到内容最小宽度以下。内容过大时 flex-shrink 无效——元素溢出。修复：<code>min-width: 0</code>。这是<b>最频繁的 Flex 溢出 bug</b>。</span><span class="en"><b>min-width: auto trap</b>: Flex items default to not shrinking below content's minimum width. When content is too large, flex-shrink is ineffective — overflow occurs. Fix: <code>min-width: 0</code>. This is the <b>most common Flex overflow bug</b>.</span></p>
+            <p><span class="zh"><b>gap</b>（2021 年全浏览器支持）统一了 Flex 和 Grid 的间距语法，取代 margin + :last-child hack。<b>align-self</b> 覆盖单项对齐方式。</span><span class="en"><b>gap</b> (full browser support 2021) unifies Flex and Grid spacing, replacing margin + :last-child hacks. <b>align-self</b> overrides alignment for individual items.</span></p>
           </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label">关键代码</div>
-<pre class="code-block"><code><span class="c">/* ── Flex 容器：主轴/交叉轴双轴控制 ── */</span>
+          <div class="part-label"><span class="zh">关键代码</span><span class="en">Key Code</span></div>
+<pre class="code-block"><code><span class="c">/* Flex container — dual-axis control */</span>
 <span class="k">.toolbar</span> {
   <span class="p">display</span>: flex;
   <span class="p">flex-direction</span>: row;
-  <span class="p">justify-content</span>: space-between;  <span class="c">/* 主轴 */</span>
-  <span class="p">align-items</span>: center;           <span class="c">/* 交叉轴 */</span>
+  <span class="p">justify-content</span>: space-between;
+  <span class="p">align-items</span>: center;
   <span class="p">gap</span>: <span class="n">12</span>px;
 }
 
-<span class="c">/* ── flex 简写 = grow shrink basis ── */</span>
-<span class="k">.sidebar</span> { <span class="p">flex</span>: <span class="n">0</span> <span class="n">0</span> <span class="n">240</span>px; }   <span class="c">/* 固定 240px,不伸缩 */</span>
-<span class="k">.main</span>    { <span class="p">flex</span>: <span class="n">1</span> <span class="n">1</span> <span class="n">0</span>; }       <span class="c">/* 自适应填充剩余空间 */</span>
-<span class="k">.badge</span>   { <span class="p">flex</span>: none; }         <span class="c">/* 以内容为准,不伸缩 */</span>
+<span class="c">/* flex shorthand = grow shrink basis */</span>
+<span class="k">.sidebar</span> { <span class="p">flex</span>: <span class="n">0</span> <span class="n">0</span> <span class="n">240</span>px; }  <span class="c">/* fixed */</span>
+<span class="k">.main</span>    { <span class="p">flex</span>: <span class="n">1</span> <span class="n">1</span> <span class="n">0</span>; }      <span class="c">/* adaptive */</span>
 
-<span class="c">/* ── 修复 min-width:auto 溢出陷阱 ── */</span>
+<span class="c">/* Fix min-width:auto overflow trap */</span>
 <span class="k">.flex-child</span> {
-  <span class="p">min-width</span>: <span class="n">0</span>;     <span class="c">/* 解除内容最小宽度限制 */</span>
-  <span class="p">overflow</span>: hidden;  <span class="c">/* 或 text-overflow:ellipsis */</span>
+  <span class="p">min-width</span>: <span class="n">0</span>;
+  <span class="p">overflow</span>: hidden;
 }
 
-<span class="c">/* ── 导航栏布局实战 ── */</span>
-<span class="k">.nav</span> {
-  <span class="p">display</span>: flex;
-  <span class="p">align-items</span>: center;
-  <span class="p">gap</span>: <span class="n">16</span>px;
-}
-<span class="k">.nav .spacer</span> { <span class="p">flex</span>: <span class="n">1</span>; }  <span class="c">/* 弹簧:推开左右两端 */</span>
-<span class="k">.nav .logo</span>  { <span class="p">align-self</span>: flex-start; }</code></pre>
+<span class="c">/* Nav bar with flex:1 spacer */</span>
+<span class="k">.nav .spacer</span> { <span class="p">flex</span>: <span class="n">1</span>; }</code></pre>
         </div>
       </div>
 
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label">演示</div>
-          <h3>Flex 弹性布局实验台</h3>
+          <div class="part-label"><span class="zh">演示</span><span class="en">Demo</span></div>
+          <h3><span class="zh">Flex 弹性布局实验台</span><span class="en">Flexbox Lab</span></h3>
         </div>
-        <p class="demo-desc">调整 Flex 属性，实时观察子元素排列变化。增减子项数量体验弹性伸缩效果。</p>
+        <p class="demo-desc"><span class="zh">调整 Flex 属性，实时观察子元素排列变化。增减子项数量体验弹性伸缩。</span><span class="en">Adjust Flex properties and observe real-time arrangement changes. Add/remove items to experience flexible sizing.</span></p>
 
         <div class="fx-controls">
           <label>flex-direction:
@@ -297,7 +270,7 @@
             </select>
           </label>
           <label>gap: <input type="range" id="fxGap" min="0" max="40" value="12"><span id="fxGapVal">12px</span></label>
-          <label>子项数: <input type="range" id="fxCount" min="2" max="8" value="4"><span id="fxCountVal">4</span></label>
+          <label><span class="zh">子项数</span><span class="en">Items</span>: <input type="range" id="fxCount" min="2" max="8" value="4"><span id="fxCountVal">4</span></label>
           <label><input type="checkbox" id="fxGrow" checked> flex-grow: 1</label>
         </div>
 
@@ -311,26 +284,23 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">6.4</div>
-        <h2>Grid 网格布局</h2>
-        <p class="chap-lead">二维布局的终极方案。CSS Grid 在行列两个维度同时控制，配合 repeat() / minmax() / auto-fit 函数和 grid-template-areas 命名区域，实现声明式布局。</p>
+        <h2><span class="zh">Grid 网格布局</span><span class="en">CSS Grid</span></h2>
+        <p class="chap-lead"><span class="zh">二维布局的终极方案。CSS Grid 在行列两个维度同时控制，配合 repeat() / minmax() / auto-fit 函数和 grid-template-areas，实现声明式布局。</span><span class="en">The ultimate two-dimensional layout solution. CSS Grid controls rows and columns simultaneously, with repeat() / minmax() / auto-fit and grid-template-areas for declarative layouts.</span></p>
       </div>
 
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label">讲解</div>
+          <div class="part-label"><span class="zh">讲解</span><span class="en">Explanation</span></div>
           <div class="part-explain">
-            <p>CSS Grid 于 2017 年 3 月在 Firefox 52、Chrome 57、Safari 10.1 全面落地，是 CSS 布局史上最重要的里程碑。与 Flexbox 的<b>一维</b>（一次只控制一个方向）不同，Grid 是<b>二维</b>布局——同时控制行和列。这意味着 Grid 特别适合<b>页面级布局</b>（header/sidebar/main/footer 整体结构），而 Flex 适合<b>组件级布局</b>（按钮组、表单行、卡片内部）。</p>
-            <p><b>fr 单位计算原理</b>：fr 是"分数"单位，表示<b>剩余空间的一份</b>。计算顺序：先扣除固定轨道（如 200px、auto），剩余空间按 fr 比例分配。例如 <code>grid-template-columns: 200px 2fr 1fr</code>，容器宽 1000px：先扣除 200px，剩余 800px 按 2:1 分配——第二列 533px、第三列 267px。</p>
-            <p><b>显式网格 vs 隐式网格</b>：<code>grid-template-columns/rows</code> 定义的是显式网格轨道。当子项数量超出显式网格范围时，Grid 自动创建隐式网格轨道，其大小由 <code>grid-auto-rows</code>/<code>grid-auto-columns</code> 控制，方向由 <code>grid-auto-flow</code> 决定（row：逐行填充，column：逐列填充，dense：回填空位）。</p>
-            <p><b>repeat() + minmax() + auto-fit</b> 是自适应布局的黄金组合：<code>repeat(auto-fit, minmax(200px, 1fr))</code> 的含义——<code>auto-fit</code> 让浏览器根据容器宽度<b>自动决定列数</b>（容器够宽就多列，不够宽就少列），<code>minmax(200px, 1fr)</code> 约束每列最小 200px、最大等分剩余空间。这<b>完全不需要媒体查询</b>即可实现从手机到桌面的响应式——这是 Grid 独有的能力，Flex 做不到。</p>
-            <p><b>grid-template-areas</b> 允许用字符串"画"出布局结构。语法要求：每行用引号包裹、行列数必须一致、空位用 <code>.</code> 表示。配合 <code>grid-area</code> 命名，修改布局只需调整字符串顺序——<b>HTML 结构完全不动</b>。例如从"侧栏在左"改为"侧栏在右"，只需交换 areas 字符串中的两个词。</p>
-            <p><b>命名网格线</b>是 areas 的进阶用法：<code>grid-template-columns: [sidebar-start] 200px [sidebar-end main-start] 1fr [main-end]</code>，然后 <code>grid-column: sidebar-start / sidebar-end</code>。这种方式在复杂布局中比 areas 更灵活。</p>
-            <p><b>subgrid</b>（2023 年 Chrome 117 支持）允许子网格继承父网格的轨道定义，解决嵌套 Grid 对齐难题。此前嵌套 Grid 的行列轨道独立计算，无法与父网格对齐。</p>
+            <p><span class="zh">CSS Grid 于 2017 年全面落地。与 Flexbox 的<b>一维</b>不同，Grid 是<b>二维</b>布局——同时控制行和列。Grid 适合<b>页面级布局</b>，Flex 适合<b>组件级布局</b>。</span><span class="en">CSS Grid landed in all browsers in 2017. Unlike Flexbox's <b>one-dimensional</b> nature, Grid is <b>two-dimensional</b> — controlling rows and columns simultaneously. Grid for <b>page-level layouts</b>, Flex for <b>component-level layouts</b>.</span></p>
+            <p><span class="zh"><b>fr 单位</b>是"剩余空间的一份"。计算：先扣除固定轨道（如 200px），剩余空间按 fr 比例分配。例如 <code>200px 2fr 1fr</code>，容器 1000px：扣 200px，剩 800px 按 2:1 分。</span><span class="en"><b>fr unit</b> is "one share of remaining space". Calculation: deduct fixed tracks first (e.g., 200px), then distribute remaining space proportionally. E.g., <code>200px 2fr 1fr</code> in 1000px container: 200px + 533px + 267px.</span></p>
+            <p><span class="zh"><b>repeat(auto-fit, minmax(200px, 1fr))</b> 是黄金组合：<code>auto-fit</code> 让浏览器自动决定列数，<code>minmax</code> 约束每列范围——<b>无需媒体查询</b>即可响应容器宽度变化。这是 Grid 独有的能力。</span><span class="en"><b>repeat(auto-fit, minmax(200px, 1fr))</b> is the golden combo: <code>auto-fit</code> lets the browser auto-determine column count, <code>minmax</code> constrains each column's range — <b>no media queries needed</b> for responsive layout. Grid-exclusive capability.</span></p>
+            <p><span class="zh"><b>grid-template-areas</b> 用字符串"画"出布局，配合 <code>grid-area</code> 命名，修改布局只需调整字符串顺序，HTML 不动。</span><span class="en"><b>grid-template-areas</b> uses strings to "draw" the layout. With <code>grid-area</code> names, changing layout only requires reordering strings — no HTML changes.</span></p>
           </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label">关键代码</div>
-<pre class="code-block"><code><span class="c">/* ── 命名区域：像画图一样布局 ── */</span>
+          <div class="part-label"><span class="zh">关键代码</span><span class="en">Key Code</span></div>
+<pre class="code-block"><code><span class="c">/* Named areas — draw your layout */</span>
 <span class="k">.app</span> {
   <span class="p">display</span>: grid;
   <span class="p">grid-template-areas</span>:
@@ -338,60 +308,52 @@
     <span class="s">"sidebar main  "</span>
     <span class="s">"footer footer"</span>;
   <span class="p">grid-template-columns</span>: <span class="n">220</span>px <span class="n">1</span>fr;
-  <span class="p">grid-template-rows</span>: auto <span class="n">1</span>fr auto;
   <span class="p">gap</span>: <span class="n">12</span>px;
 }
-<span class="k">.app > header</span>  { <span class="p">grid-area</span>: header; }
-<span class="k">.app > nav</span>     { <span class="p">grid-area</span>: sidebar; }
-<span class="k">.app > main</span>    { <span class="p">grid-area</span>: main; }
-<span class="k">.app > footer</span>  { <span class="p">grid-area</span>: footer; }
+<span class="k">.app > header</span> { <span class="p">grid-area</span>: header; }
+<span class="k">.app > nav</span>    { <span class="p">grid-area</span>: sidebar; }
 
-<span class="c">/* ── 无媒体查询自适应：auto-fit 魔法 ── */</span>
+<span class="c">/* No-media-query responsive: auto-fit */</span>
 <span class="k">.gallery</span> {
   <span class="p">display</span>: grid;
   <span class="p">grid-template-columns</span>:
     repeat(<span class="k">auto-fit</span>, minmax(<span class="n">200</span>px, <span class="n">1</span>fr));
-  <span class="c">/* 容器>400px: 2列; >600px: 3列; ... */</span>
-  <span class="c">/* 容器<200px: 1列——自动响应! */</span>
-  <span class="p">gap</span>: <span class="n">16</span>px;
 }
 
-<span class="c">/* ── 命名网格线——精确控制 ── */</span>
+<span class="c">/* Named grid lines */</span>
 <span class="k">.layout</span> {
   <span class="p">grid-template-columns</span>:
     [<span class="s">nav-start</span>] <span class="n">200</span>px [<span class="s">nav-end</span> <span class="s">main-start</span>]
     <span class="n">1</span>fr [<span class="s">main-end</span>];
-}
-<span class="k">.layout > nav</span>  { <span class="p">grid-column</span>: nav-start / nav-end; }
-<span class="k">.layout > main</span> { <span class="p">grid-column</span>: main-start / main-end; }</code></pre>
+}</code></pre>
         </div>
       </div>
 
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label">演示</div>
-          <h3>Grid 网格布局实验台</h3>
+          <div class="part-label"><span class="zh">演示</span><span class="en">Demo</span></div>
+          <h3><span class="zh">Grid 网格布局实验台</span><span class="en">Grid Lab</span></h3>
         </div>
-        <p class="demo-desc">调整列数、行数、间距和列宽单位，实时观察网格变化。切换预设布局模板体验 grid-template-areas 的威力。</p>
+        <p class="demo-desc"><span class="zh">调整列数、行数、间距和列宽单位，切换预设布局模板体验 grid-template-areas。</span><span class="en">Adjust columns, rows, gap, and column units. Switch preset templates to experience grid-template-areas.</span></p>
 
         <div class="gd-controls">
-          <label>列数: <input type="range" id="gdCols" min="1" max="6" value="3"><span id="gdColsVal">3</span></label>
-          <label>行数: <input type="range" id="gdRows" min="1" max="4" value="2"><span id="gdRowsVal">2</span></label>
+          <label><span class="zh">列数</span><span class="en">Cols</span>: <input type="range" id="gdCols" min="1" max="6" value="3"><span id="gdColsVal">3</span></label>
+          <label><span class="zh">行数</span><span class="en">Rows</span>: <input type="range" id="gdRows" min="1" max="4" value="2"><span id="gdRowsVal">2</span></label>
           <label>gap: <input type="range" id="gdGap" min="0" max="30" value="12"><span id="gdGapVal">12px</span></label>
-          <label>列宽:
+          <label><span class="zh">列宽</span><span class="en">Unit</span>:
             <select id="gdUnit">
-              <option value="1fr">1fr (等分)</option>
+              <option value="1fr">1fr</option>
               <option value="minmax(100px,1fr)">minmax(100px,1fr)</option>
               <option value="auto">auto</option>
-              <option value="120px">120px (固定)</option>
+              <option value="120px">120px</option>
             </select>
           </label>
         </div>
         <div class="gd-templates">
-          <button class="gd-tpl active" data-tpl="custom">自定义</button>
-          <button class="gd-tpl" data-tpl="app">App 布局</button>
-          <button class="gd-tpl" data-tpl="gallery">画廊</button>
-          <button class="gd-tpl" data-tpl="blog">博客</button>
+          <button class="gd-tpl active" data-tpl="custom"><span class="zh">自定义</span><span class="en">Custom</span></button>
+          <button class="gd-tpl" data-tpl="app"><span class="zh">App 布局</span><span class="en">App</span></button>
+          <button class="gd-tpl" data-tpl="gallery"><span class="zh">画廊</span><span class="en">Gallery</span></button>
+          <button class="gd-tpl" data-tpl="blog"><span class="zh">博客</span><span class="en">Blog</span></button>
         </div>
 
         <div class="gd-playground" id="gdPlayground"></div>
@@ -405,71 +367,52 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">6.5</div>
-        <h2>响应式设计</h2>
-        <p class="chap-lead">从媒体查询到容器查询，从移动优先到内在设计——响应式不只是 @media，而是一整套适配多端的设计哲学。</p>
+        <h2><span class="zh">响应式设计</span><span class="en">Responsive Design</span></h2>
+        <p class="chap-lead"><span class="zh">从媒体查询到容器查询，从移动优先到内在设计——响应式不只是 @media，而是一整套适配多端的设计哲学。</span><span class="en">From media queries to container queries, from mobile-first to intrinsic design — responsive is not just @media, but a complete multi-device design philosophy.</span></p>
       </div>
 
       <div class="lesson-grid reveal">
         <div class="lesson-col">
-          <div class="part-label">讲解</div>
+          <div class="part-label"><span class="zh">讲解</span><span class="en">Explanation</span></div>
           <div class="part-explain">
-            <p>2010 年 Ethan Marcotte 在 A List Apart 发表《Responsive Web Design》一文，提出响应式设计三要素：<b>弹性网格 + 弹性图片 + 媒体查询</b>。核心思想是<b>一份 HTML，多套 CSS</b>——不根据 User Agent 判断设备，而是根据视口宽度动态切换布局。</p>
-            <p><b>移动优先（Mobile First）</b>策略由 Luke Wroblewski 在 2009 年提出：先写小屏幕样式作为默认（通常最简、最核心），再用 <code>@media (min-width: ...)</code> 逐步增强大屏体验。这与<b>渐进增强</b>理念一致——小屏保底基础功能，大屏逐步提升体验。反过来用 <code>max-width</code> 则是"桌面优先"——在大屏基础上做减法，容易遗漏小屏核心功能。</p>
-            <p><b>断点选择</b>不应基于设备尺寸（iPhone 是 375px、iPad 是 768px——设备每年在变），而应基于<b>内容流动的变形点</b>：在某个宽度下，如果内容开始拥挤（列宽太窄、文字换行混乱）或留白过多（图片太小、行宽过长），就该加断点。常见的实践方法：打开浏览器 DevTools 拖拽视口宽度，找到布局"开始变丑"的临界点。</p>
-            <p><b>流体排版 clamp()</b>：<code>font-size: clamp(1rem, 4vw, 3rem)</code> 三个参数分别是<b>最小值、理想值、最大值</b>。4vw 让字号随视口连续变化（4% of viewport width），1rem 是下限保护（手机上不至于太小），3rem 是上限保护（4K 屏上不至于太大）。<b>无需媒体查询，字号连续变化而非阶梯跳变</b>——这是"内在设计"理念的体现。</p>
-            <p><b>视口单位进化</b>：<code>vh</code> 在移动端有"地址栏收缩"问题——100vh 可能比实际可见区域高。2022 年新增 <code>dvh</code>（dynamic viewport height，随地址栏收缩动态调整）、<code>svh</code>（small viewport height，地址栏展开时的高度）、<code>lvh</code>（large viewport height，地址栏收起时的高度）。移动端全屏布局推荐用 <code>100dvh</code> 替代 <code>100vh</code>。</p>
-            <p><b>容器查询 @container</b>（2023 年 Chrome 105 / Firefox 110 / Safari 16 全浏览器支持）：让组件<b>根据自身容器宽度</b>而非视口宽度响应。这是响应式设计的<b>范式转变</b>——从"页面响应视口"到"组件响应容器"。同一个卡片组件放在 200px 侧栏和 800px 主区时，可以自动呈现不同的布局，无需 JavaScript 判断位置。<code>container-type: inline-size</code> 声明容器后，用 <code>@container (min-width: 400px)</code> 写组件级断点。</p>
+            <p><span class="zh">2010 年 Ethan Marcotte 提出响应式设计三要素：<b>弹性网格 + 弹性图片 + 媒体查询</b>。核心是<b>一份 HTML，多套 CSS</b>，根据视口宽度动态切换布局。</span><span class="en">In 2010, Ethan Marcotte proposed responsive design's three pillars: <b>fluid grid + flexible images + media queries</b>. Core idea: <b>one HTML, multiple CSS</b>, dynamically switching layout based on viewport width.</span></p>
+            <p><span class="zh"><b>移动优先</b>（Luke Wroblewski）：先写小屏默认样式，用 <code>@media (min-width: ...)</code> 逐步增强大屏。断点应基于<b>内容变形点</b>而非设备尺寸。</span><span class="en"><b>Mobile-first</b> (Luke Wroblewski): Write small-screen defaults first, enhance with <code>@media (min-width: ...)</code>. Breakpoints should be based on <b>content deformation points</b>, not device sizes.</span></p>
+            <p><span class="zh"><b>clamp()</b> 流体排版：<code>clamp(1rem, 4vw, 3rem)</code> = 最小值、理想值、最大值。<b>无需媒体查询</b>，字号随视口连续变化。</span><span class="en"><b>clamp()</b> fluid typography: <code>clamp(1rem, 4vw, 3rem)</code> = min, ideal, max. <b>No media queries needed</b> — font-size changes continuously with viewport.</span></p>
+            <p><span class="zh"><b>dvh/svh/lvh</b>（2022 年新增）：解决移动端 100vh 的地址栏收缩问题。推荐用 <code>100dvh</code> 替代 <code>100vh</code>。</span><span class="en"><b>dvh/svh/lvh</b> (2022): Solves mobile 100vh address-bar shrinkage. Use <code>100dvh</code> instead of <code>100vh</code>.</span></p>
+            <p><span class="zh"><b>容器查询 @container</b>（2023 年全浏览器支持）：让组件根据<b>自身容器宽度</b>而非视口响应——范式转变。同一组件在侧栏和主区可呈现不同布局。</span><span class="en"><b>Container queries @container</b> (full support 2023): Components respond to <b>their own container width</b> instead of viewport — a paradigm shift. The same component can render differently in sidebar vs. main area.</span></p>
           </div>
         </div>
         <div class="lesson-col">
-          <div class="part-label">关键代码</div>
-<pre class="code-block"><code><span class="c">/* ── 移动优先：小屏默认,大屏增强 ── */</span>
-<span class="k">.grid</span> {
-  <span class="p">grid-template-columns</span>: <span class="n">1</span>fr;       <span class="c">/* 手机:单列 */</span>
-}
-<span class="k">@media</span> (min-width: <span class="n">640</span>px) {       <span class="c">/* 平板 */</span>
+          <div class="part-label"><span class="zh">关键代码</span><span class="en">Key Code</span></div>
+<pre class="code-block"><code><span class="c">/* Mobile-first: small default, enhance up */</span>
+<span class="k">.grid</span> { <span class="p">grid-template-columns</span>: <span class="n">1</span>fr; }
+<span class="k">@media</span> (min-width: <span class="n">640</span>px) {
   <span class="k">.grid</span> { <span class="p">grid-template-columns</span>: repeat(<span class="n">2</span>, <span class="n">1</span>fr); }
 }
-<span class="k">@media</span> (min-width: <span class="n">1024</span>px) {      <span class="c">/* 桌面 */</span>
+<span class="k">@media</span> (min-width: <span class="n">1024</span>px) {
   <span class="k">.grid</span> { <span class="p">grid-template-columns</span>: repeat(<span class="n">3</span>, <span class="n">1</span>fr); }
 }
 
-<span class="c">/* ── 流体排版——clamp 三参数 ── */</span>
-<span class="k">h1</span> {
-  <span class="p">font-size</span>: clamp(<span class="n">1.5</span>rem, <span class="n">4</span>vw, <span class="n">3</span>rem);
-  <span class="c">/* min=24px, ideal=4%视口, max=48px */</span>
-}
+<span class="c">/* Fluid typography — clamp(min, ideal, max) */</span>
+<span class="k">h1</span> { <span class="p">font-size</span>: clamp(<span class="n">1.5</span>rem, <span class="n">4</span>vw, <span class="n">3</span>rem); }
 
-<span class="c">/* ── 移动端视口：dvh 替代 vh ── */</span>
-<span class="k">.fullscreen</span> {
-  <span class="p">height</span>: <span class="n">100</span>dvh;  <span class="c">/* 动态视口高度 */</span>
-  <span class="c">/* 旧: 100vh (移动端地址栏收缩时会溢出) */</span>
-}
+<span class="c">/* Dynamic viewport height (2022) */</span>
+<span class="k">.fullscreen</span> { <span class="p">height</span>: <span class="n">100</span>dvh; }
 
-<span class="c">/* ── 容器查询：组件响应容器 ── */</span>
-<span class="k">.card-wrapper</span> {
-  <span class="p">container-type</span>: inline-size;  <span class="c">/* 声明容器 */</span>
-}
+<span class="c">/* Container queries (2023) */</span>
+<span class="k">.card-wrapper</span> { <span class="p">container-type</span>: inline-size; }
 <span class="k">@container</span> (min-width: <span class="n">400</span>px) {
-  <span class="k">.card</span> {
-    <span class="p">display</span>: flex;          <span class="c">/* 宽: 横向布局 */</span>
-    <span class="p">flex-direction</span>: row;
-  }
-}
-<span class="k">@container</span> (max-width: <span class="n">399</span>px) {
-  <span class="k">.card</span> {
-    <span class="p">display</span>: block;         <span class="c">/* 窄: 纵向堆叠 */</span>
-  }
+  <span class="k">.card</span> { <span class="p">display</span>: flex; <span class="p">flex-direction</span>: row; }
 }</code></pre>
         </div>
       </div>
 
       <div class="demo-stage reveal">
         <div class="demo-head">
-          <div class="part-label">演示</div>
-          <h3>响应式布局预览器</h3>
+          <div class="part-label"><span class="zh">演示</span><span class="en">Demo</span></div>
+          <h3><span class="zh">响应式布局预览器</span><span class="en">Responsive Previewer</span></h3>
         </div>
-        <p class="demo-desc">切换不同设备宽度，观察页面布局如何从三列自适应到单列，sidebar 如何从侧边移到底部。</p>
+        <p class="demo-desc"><span class="zh">切换不同设备宽度，观察页面布局如何从三列自适应到单列。</span><span class="en">Switch device widths and observe the layout adapt from three columns to a single column.</span></p>
 
         <div class="rs-buttons">
           <button class="rs-btn" data-w="375">iPhone SE (375px)</button>
@@ -504,18 +447,18 @@
     <div class="container">
       <div class="chap-head reveal">
         <div class="chap-no">★</div>
-        <h2>知识闯关</h2>
-        <p class="chap-lead">5 道题检验本章布局核心知识</p>
+        <h2><span class="zh">知识闯关</span><span class="en">Quiz</span></h2>
+        <p class="chap-lead"><span class="zh">5 道题检验本章布局核心知识</span><span class="en">5 questions to test your understanding</span></p>
       </div>
       <div class="quiz-card reveal">
         <div class="quiz-meta">
-          <span class="quiz-progress" id="quizProgress">第 1 / 5 题</span>
-          <span class="quiz-score">得分：<b id="quizScore">0</b></span>
+          <span class="quiz-progress" id="quizProgress"><span class="zh">第 1 / 5 题</span><span class="en">Question 1 / 5</span></span>
+          <span class="quiz-score"><span class="zh">得分</span><span class="en">Score</span>：<b id="quizScore">0</b></span>
         </div>
         <div class="quiz-body" id="quizBody"></div>
         <div class="quiz-footer">
-          <button class="quiz-btn next" id="quizNext" style="display:none">下一题 →</button>
-          <button class="quiz-btn restart" id="quizRestart" style="display:none">↺ 重新开始</button>
+          <button class="quiz-btn next" id="quizNext" style="display:none"><span class="zh">下一题 →</span><span class="en">Next →</span></button>
+          <button class="quiz-btn restart" id="quizRestart" style="display:none"><span class="zh">↺ 重新开始</span><span class="en">↺ Restart</span></button>
         </div>
       </div>
     </div>
@@ -523,11 +466,11 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>数据可视化 · 第 6 章 页面布局 · 案例式教学</p>
+      <p><span class="zh">数据可视化 · 第 6 章 页面布局 · 案例式教学</span><span class="en">Data Visualization · Ch.6 Page Layout · Case-based Teaching</span></p>
     </div>
   </footer>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="app.js?v=20260916c"></script>
+  <script src="app.js?v=20260916d"></script>
 </body>
 </html>
